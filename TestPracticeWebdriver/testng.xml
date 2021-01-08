@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="Suite" parallel="classes">
+	<listeners>
+		<listener class-name="listeners.Listeners" />
+		<!-- <listener class-name="com.workflow.dcp.utility.AnnotationTransformer" /> -->
+	</listeners>
+	<test name="Test">
+		<classes>
+			<!-- <class name="com.workflow.dcp.testcases.LogInTest" /> -->
+			<class name="testcases.LogInTest" />
+			<class name="testcases.LogInTest2" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
+
