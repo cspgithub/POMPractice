@@ -1,11 +1,15 @@
 package base;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import enums.EnumType;
 import utility.ConfigFileReader;
@@ -39,7 +43,7 @@ public class Driver {
 			createLocalDriver(ConfigFileReader.getValue("browser"));
 			break;
 		case REMOTE_ENV:
-			System.out.println("code not imlemented yet");
+			createRemoteDriver(ConfigFileReader.getValue("browser"));
 			break;
 		default:
 			System.out.println("please provide correct environment");
@@ -65,6 +69,35 @@ public class Driver {
 			System.out.println("Invalid browser passed :" + browser);
 			break;
 		}
+		DriverManager.setDriver(driver);
+		DriverManager.getDriver().manage().deleteAllCookies();
+		DriverManager.getDriver().get(ConfigFileReader.getValue("url"));
+
+	}
+
+	private static void createRemoteDriver(String browser) throws IOException {
+		//docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
+		System.out.println("Browser Selected on Docker :" + browser);
+		DesiredCapabilities capability = null;
+		switch (browser) {
+		case "chrome":
+			capability = DesiredCapabilities.chrome();
+			capability.setBrowserName("chrome");
+
+			break;
+
+		case "firefox":
+			capability = DesiredCapabilities.firefox();
+			capability.setBrowserName("firefox");
+
+			break;
+
+		default:
+			System.out.println("Invalid browser passed :" + browser);
+			break;
+		}
+		capability.setPlatform(Platform.ANY);
+		driver = new RemoteWebDriver(new URL(ConfigFileReader.getValue("remoteurl")), capability);
 		DriverManager.setDriver(driver);
 		DriverManager.getDriver().manage().deleteAllCookies();
 		DriverManager.getDriver().get(ConfigFileReader.getValue("url"));

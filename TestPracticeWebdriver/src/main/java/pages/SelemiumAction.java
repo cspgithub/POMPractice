@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.DriverManager;
+import reports.ExtentLogger;
 
 public class SelemiumAction {
 
@@ -31,6 +32,7 @@ public class SelemiumAction {
 
 	protected void click(By by) {
 		getWebElement(by).click();
+		ExtentLogger.pass("clicked sussefully");
 
 	}
 

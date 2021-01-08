@@ -7,7 +7,6 @@ public final class FrameworkConstants {
 	
 	private static final String configFilerPath = System.getProperty("user.dir")+"/src/test/resources/config.properties";
 
-	
 
 	private static String extentConfigPath = System.getProperty("user.dir")+"/src/test/resources/extentreport.xml";
 
