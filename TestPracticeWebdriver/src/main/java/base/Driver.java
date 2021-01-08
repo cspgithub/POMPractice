@@ -25,9 +25,25 @@ public class Driver {
 		return browsername;
 	}
 
+	public static void setUpDocker() throws IOException, InterruptedException {
+		if (ConfigFileReader.getValue("executionmode").equalsIgnoreCase("remote")) {
+			Runtime runtime = Runtime.getRuntime();
+			runtime.exec("cmd /c start dockerUp.bat");
+			Thread.sleep(20000);
+
+		}
+	}
+
+	public static void closeDocker() throws IOException {
+		Runtime runtime = Runtime.getRuntime();
+		runtime.exec("cmd /c start dockerClose.bat");
+		runtime.exec("taskkill /f /im cmd.exe");
+	}
+
 	public static void initateDriver() {
 		if (Objects.isNull(DriverManager.getDriver())) {
 			try {
+				//setUpDocker();
 				createDriver();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -43,7 +59,9 @@ public class Driver {
 			createLocalDriver(ConfigFileReader.getValue("browser"));
 			break;
 		case REMOTE_ENV:
+
 			createRemoteDriver(ConfigFileReader.getValue("browser"));
+
 			break;
 		default:
 			System.out.println("please provide correct environment");
@@ -76,14 +94,15 @@ public class Driver {
 	}
 
 	private static void createRemoteDriver(String browser) throws IOException {
-		//docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
+		// docker run -d -p 4444:4444 -v /dev/shm:/dev/shm
+		// selenium/standalone-chrome:latest
 		System.out.println("Browser Selected on Docker :" + browser);
 		DesiredCapabilities capability = null;
+		
 		switch (browser) {
 		case "chrome":
 			capability = DesiredCapabilities.chrome();
 			capability.setBrowserName("chrome");
-
 			break;
 
 		case "firefox":
@@ -104,11 +123,12 @@ public class Driver {
 
 	}
 
-	public static void quitDriver() {
+	public static void quitDriver()  {
 		if (Objects.nonNull(DriverManager.getDriver())) {
 			DriverManager.getDriver().close();
 			DriverManager.getDriver().quit();
 			DriverManager.unload();
+			// closeDocker();
 		}
 	}
 

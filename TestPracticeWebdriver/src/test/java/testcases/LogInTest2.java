@@ -16,5 +16,50 @@ public class LogInTest2 extends BaseTest {
 		
 
 	}
+	
+	@Test
+	public void verifyAttendanceWithValidCr() throws IOException {
+		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
+		login.enterCredentials("admin");
+		assertTrue(dashboard.verifyAttendanceLinkInDashboard());
+		
+
+	}
+	
+	@Test
+	public void verifyAttendancredentials() throws IOException {
+		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
+		login.enterCredentials("admin");
+		assertTrue(dashboard.verifyAttendanceLinkInDashboard());
+		
+
+	}
+	
+	@Test
+	public void verifyAttenidCredentials() throws IOException {
+		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
+		login.enterCredentials("admin");
+		assertTrue(dashboard.verifyAttendanceLinkInDashboard());
+		
+
+	}
+	
+	@Test
+	public void verifyAttendanValidCredentials() throws IOException {
+		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
+		login.enterCredentials("admin");
+		assertTrue(dashboard.verifyAttendanceLinkInDashboard());
+		
+
+	}
+	
+	@Test
+	public void verifyAttendanceWithVCredentials() throws IOException {
+		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
+		login.enterCredentials("admin");
+		assertTrue(dashboard.verifyAttendanceLinkInDashboard());
+		
+
+	}
 
 }

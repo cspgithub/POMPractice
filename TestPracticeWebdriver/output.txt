@@ -1,0 +1,261 @@
+Attaching to selenium-hub, testpracticewebdriver_chrome_1
+[36mselenium-hub    |[0m 2021-01-08 10:01:29,876 INFO Included extra file "/etc/supervisor/conf.d/selenium-hub.conf" during parsing
+[36mselenium-hub    |[0m 2021-01-08 10:01:29,877 INFO supervisord started with pid 9
+[33mchrome_1        |[0m 2021-01-08 10:01:30,314 INFO Included extra file "/etc/supervisor/conf.d/selenium.conf" during parsing
+[33mchrome_1        |[0m 2021-01-08 10:01:30,316 INFO supervisord started with pid 9
+[36mselenium-hub    |[0m 2021-01-08 10:01:30,882 INFO spawned: 'selenium-hub' with pid 12
+[36mselenium-hub    |[0m Starting Selenium Hub with configuration:
+[36mselenium-hub    |[0m 2021-01-08 10:01:30,895 INFO success: selenium-hub entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+[36mselenium-hub    |[0m {
+[36mselenium-hub    |[0m   "host": "0.0.0.0",
+[36mselenium-hub    |[0m   "port": 4444,
+[36mselenium-hub    |[0m   "role": "hub",
+[36mselenium-hub    |[0m   "maxSession": 5,
+[36mselenium-hub    |[0m   "newSessionWaitTimeout": -1,
+[36mselenium-hub    |[0m   "capabilityMatcher": "org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
+[36mselenium-hub    |[0m   "throwOnCapabilityNotPresent": true,
+[36mselenium-hub    |[0m   "jettyMaxThreads": -1,
+[36mselenium-hub    |[0m   "cleanUpCycle": 5000,
+[36mselenium-hub    |[0m   "browserTimeout": 0,
+[36mselenium-hub    |[0m   "timeout": 1800,
+[36mselenium-hub    |[0m   "debug": false
+[36mselenium-hub    |[0m }
+[36mselenium-hub    |[0m 10:01:31.099 INFO [GridLauncherV3.parse] - Selenium server version: 3.141.59, revision: e82be7d358
+[36mselenium-hub    |[0m 10:01:31.170 INFO [GridLauncherV3.lambda$buildLaunchers$5] - Launching Selenium Grid hub on port 4444
+[33mchrome_1        |[0m 2021-01-08 10:01:31,325 INFO spawned: 'xvfb' with pid 11
+[33mchrome_1        |[0m 2021-01-08 10:01:31,333 INFO spawned: 'selenium-node' with pid 12
+[36mselenium-hub    |[0m 2021-01-08 10:01:31.515:INFO::main: Logging initialized @611ms to org.seleniumhq.jetty9.util.log.StdErrLog
+[36mselenium-hub    |[0m 10:01:31.646 INFO [Hub.start] - Selenium Grid hub is up and running
+[36mselenium-hub    |[0m 10:01:31.647 INFO [Hub.start] - Nodes should register to http://172.30.0.2:4444/grid/register/
+[36mselenium-hub    |[0m 10:01:31.647 INFO [Hub.start] - Clients should connect to http://172.30.0.2:4444/wd/hub
+[33mchrome_1        |[0m Connecting to the Hub using the host selenium-hub and port 4444
+[33mchrome_1        |[0m 2021-01-08 10:01:31,759 INFO success: xvfb entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+[33mchrome_1        |[0m 2021-01-08 10:01:31,759 INFO success: selenium-node entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+[33mchrome_1        |[0m 10:01:31.976 INFO [GridLauncherV3.parse] - Selenium server version: 3.141.59, revision: e82be7d358
+[33mchrome_1        |[0m 10:01:32.058 INFO [GridLauncherV3.lambda$buildLaunchers$7] - Launching a Selenium Grid node on port 5555
+[33mchrome_1        |[0m 2021-01-08 10:01:32.124:INFO::main: Logging initialized @349ms to org.seleniumhq.jetty9.util.log.StdErrLog
+[33mchrome_1        |[0m 10:01:32.303 INFO [WebDriverServlet.<init>] - Initialising WebDriverServlet
+[33mchrome_1        |[0m 10:01:32.386 INFO [SeleniumServer.boot] - Selenium Server is up and running on port 5555
+[33mchrome_1        |[0m 10:01:32.387 INFO [GridLauncherV3.lambda$buildLaunchers$7] - Selenium Grid node is up and ready to register to the hub
+[33mchrome_1        |[0m 10:01:32.418 INFO [SelfRegisteringRemote$1.run] - Starting auto registration thread. Will try to register every 5000 ms.
+[33mchrome_1        |[0m 10:01:32.706 INFO [SelfRegisteringRemote.registerToHub] - Registering the node to the hub: http://selenium-hub:4444/grid/register
+[33mchrome_1        |[0m 10:01:32.745 INFO [SelfRegisteringRemote.registerToHub] - The node is registered to the hub and ready to use
+[36mselenium-hub    |[0m 10:01:32.750 INFO [DefaultGridRegistry.add] - Registered a node http://172.30.0.3:5555
+[36mselenium-hub    |[0m 10:01:47.159 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.159 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.159 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.160 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.160 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.160 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.159 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.160 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.160 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.159 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[36mselenium-hub    |[0m 10:01:47.167 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[36mselenium-hub    |[0m 10:01:47.170 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:01:47.240 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:01:47.240 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:01:47.242 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:01:47.242 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m SSttaarrttiinngg  CChhrroommeeDDrriivveerr  8877..00..44228800..8888  ((8899ee22338800aa33ee3366cc33446644bb55dddd11330022334499b1382549290d-refs/bbr1a3n8c2h5-4h9e2a9d0sd/-4r2e8f0s@/{b#r1a7n6c1h}-)h eoand sp/o4r2t8 03@1{2#1177
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m 61}) on port 20923
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100107.270][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m ChromeDriver was started success[161010f0u1l0l7y..2
+[33mchrome_1        |[0m 72][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:01:47.780 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:01:47.783 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:01:47.908 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 61b1ae9c2f642607e87d41e934cf3d1a (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:01:47.908 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 34d393d4392ee96de09ca705cd68e833 (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:01:51.851 INFO [ActiveSessions$1.onStop] - Removing session 61b1ae9c2f642607e87d41e934cf3d1a (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:01:51.854 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[36mselenium-hub    |[0m 10:01:51.874 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[33mchrome_1        |[0m 10:01:51.877 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:01:51.877 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 1586
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100111.887][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:01:52.190 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:01:52.192 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 16536db0a789274dc35dc4da8f41a410 (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:01:53.990 INFO [ActiveSessions$1.onStop] - Removing session 34d393d4392ee96de09ca705cd68e833 (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:01:53.993 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:01:54.009 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:01:54.009 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:01:54.011 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {browserName: chrome, version: }
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 16525
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100114.015][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:01:54.253 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:01:54.255 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 17af4cc882e75deca885758d1b2418f7 (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:01:58.351 INFO [ActiveSessions$1.onStop] - Removing session 16536db0a789274dc35dc4da8f41a410 (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:01:58.355 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:01:58.370 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:01:58.370 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 26941
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100118.381][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:01:58.653 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:01:58.654 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 02133b0888240dcb13cd58ea607ac4ba (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:01:59.998 INFO [ActiveSessions$1.onStop] - Removing session 17af4cc882e75deca885758d1b2418f7 (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:02:00.001 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:02:00.023 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:02:00.024 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 16229
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100120.030][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:02:00.284 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:02:00.285 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session cd82ff3623cc6f6959a4b1b5aefac313 (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:02:02.917 INFO [ActiveSessions$1.onStop] - Removing session cd82ff3623cc6f6959a4b1b5aefac313 (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:02:02.920 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:02:02.933 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:02:02.933 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 19460
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100122.939][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:02:02.959 INFO [ActiveSessions$1.onStop] - Removing session 02133b0888240dcb13cd58ea607ac4ba (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:02:02.961 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:02:03.026 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:02:03.026 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 5355
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100123.033][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:02:03.254 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:02:03.258 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 8d82be9584c477b914dec6f7acaf329a (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:02:03.344 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:02:03.346 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 7276a3a78ef500aea6278fc84089529b (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:02:06.139 INFO [ActiveSessions$1.onStop] - Removing session 7276a3a78ef500aea6278fc84089529b (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:02:06.141 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:02:06.169 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:02:06.169 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 9926
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100126.174][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:02:06.435 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:02:06.437 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 1336dc02370d3588ef8fc28db76d4766 (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:02:09.819 INFO [ActiveSessions$1.onStop] - Removing session 8d82be9584c477b914dec6f7acaf329a (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:02:09.821 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:02:09.834 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:02:09.834 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 30647
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100129.842][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:02:10.126 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:02:10.128 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 8bd381849a1aff88907459c5af65f49a (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:02:10.659 INFO [ActiveSessions$1.onStop] - Removing session 1336dc02370d3588ef8fc28db76d4766 (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:02:10.661 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:02:10.674 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:02:10.675 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 1777
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100130.680][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:02:10.933 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:02:10.934 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 59a2e75e6556039311a5a70781122852 (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:02:15.541 INFO [ActiveSessions$1.onStop] - Removing session 59a2e75e6556039311a5a70781122852 (org.openqa.selenium.chrome.ChromeDriverService)
+[36mselenium-hub    |[0m 10:02:15.544 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=915064c5-9c19-4132-9c17-caa65359b3a6, seleniumProtocol=WebDriver, browserName=chrome, maxInstances=5, platformName=LINUX, version=87.0.4280.88, applicationName=, platform=LINUX}
+[33mchrome_1        |[0m 10:02:15.562 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+[33mchrome_1        |[0m   "browserName": "chrome",
+[33mchrome_1        |[0m   "goog:chromeOptions": {
+[33mchrome_1        |[0m   },
+[33mchrome_1        |[0m   "version": ""
+[33mchrome_1        |[0m }
+[33mchrome_1        |[0m 10:02:15.562 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Starting ChromeDriver 87.0.4280.88 (89e2380a3e36c3464b5dd1302349b1382549290d-refs/branch-heads/4280@{#1761}) on port 12058
+[33mchrome_1        |[0m Only local connections are allowed.
+[33mchrome_1        |[0m Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[33mchrome_1        |[0m ChromeDriver was started successfully.
+[33mchrome_1        |[0m [1610100135.568][SEVERE]: bind() failed: Cannot assign requested address (99)
+[33mchrome_1        |[0m 10:02:15.832 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+[33mchrome_1        |[0m 10:02:15.834 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 3f809da21397359116a4ce0eeaf5bf4b (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:02:16.730 INFO [ActiveSessions$1.onStop] - Removing session 8bd381849a1aff88907459c5af65f49a (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m 10:02:20.301 INFO [ActiveSessions$1.onStop] - Removing session 3f809da21397359116a4ce0eeaf5bf4b (org.openqa.selenium.chrome.ChromeDriverService)
+[33mchrome_1        |[0m Trapped SIGTERM/SIGINT/x so shutting down supervisord...
+[33mchrome_1        |[0m 2021-01-08 10:02:22,304 WARN received SIGTERM indicating exit request
+[33mchrome_1        |[0m 2021-01-08 10:02:22,304 INFO waiting for xvfb, selenium-node to die
+[33mchrome_1        |[0m 2021-01-08 10:02:23,307 INFO stopped: selenium-node (terminated by SIGTERM)
+[33mchrome_1        |[0m 2021-01-08 10:02:24,310 INFO stopped: xvfb (terminated by SIGTERM)
+[33mchrome_1        |[0m Shutdown complete
+[33mtestpracticewebdriver_chrome_1 exited with code 143
+[0m[36mselenium-hub    |[0m Trapped SIGTERM/SIGINT/x so shutting down supervisord...
+[36mselenium-hub    |[0m 2021-01-08 10:02:24,598 WARN received SIGTERM indicating exit request
+[36mselenium-hub    |[0m 2021-01-08 10:02:24,598 INFO waiting for selenium-hub to die
+[36mselenium-hub    |[0m 2021-01-08 10:02:24,598 INFO stopped: selenium-hub (terminated by SIGTERM)
+[36mselenium-hub    |[0m Shutdown complete
+[36mselenium-hub exited with code 143
+[0m

@@ -5,9 +5,11 @@
     <classes>
       <class name="testcases.LogInTest">
         <methods>
+          <include name="verifyAttendanceWithInvalidCredentials45"/>
+          <include name="start"/>
           <include name="Close"/>
           <include name="Start"/>
-          <include name="verifyAttendance2"/>
+          <include name="CloseD"/>
         </methods>
       </class> <!-- testcases.LogInTest -->
     </classes>
