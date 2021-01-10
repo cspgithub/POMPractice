@@ -8,10 +8,12 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import enums.EnumType;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import utility.ConfigFileReader;
 
 public class Driver {
@@ -29,7 +31,7 @@ public class Driver {
 		if (ConfigFileReader.getValue("executionmode").equalsIgnoreCase("remote")) {
 			Runtime runtime = Runtime.getRuntime();
 			runtime.exec("cmd /c start dockerUp.bat");
-			Thread.sleep(20000);
+			Thread.sleep(1000);
 
 		}
 	}
@@ -79,7 +81,8 @@ public class Driver {
 			break;
 
 		case "firefox":
-			System.setProperty("webdriver.chrome.driver", FrameworkConstants.getChromedriverpath());
+			//System.setProperty("webdriver.firefox.driver", FrameworkConstants.getChromedriverpath());
+			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 			break;
 
@@ -108,7 +111,10 @@ public class Driver {
 		case "firefox":
 			capability = DesiredCapabilities.firefox();
 			capability.setBrowserName("firefox");
-
+			FirefoxOptions options = new FirefoxOptions();
+		    options.setHeadless(false);
+		    System.out.println(options.getBrowserName());
+		    capability.merge(options);
 			break;
 
 		default:
@@ -128,7 +134,7 @@ public class Driver {
 			DriverManager.getDriver().close();
 			DriverManager.getDriver().quit();
 			DriverManager.unload();
-			// closeDocker();
+			
 		}
 	}
 

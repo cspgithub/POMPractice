@@ -16,14 +16,14 @@ services:
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
-      - NODE_MAX_SESSION=2
-      - NODE_MAX_INSTANCES=5
- # firefox:
-    #image: selenium/node-firefox-debug:latest
-    #volumes:
-     # - /dev/shm:/dev/shm
-    #depends_on:
-     # - selenium-hub
-    #environment:
-     # - HUB_HOST=selenium-hub
-      #- HUB_PORT=4444
+      - NODE_MAX_INSTANCES= 5
+      - NODE_MAX_SESSION= 10
+
+#stop all containers:
+#docker kill $(docker ps -q)
+
+#remove all containers
+#docker rm $(docker ps -a -q)
+
+#remove all docker images
+#docker rmi $(docker images -q)

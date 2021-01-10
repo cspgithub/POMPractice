@@ -15,18 +15,19 @@ public class LoginPage extends SelemiumAction {
 	private By signButton = By.xpath("//*[@id=\"imgBtnOK\"]");
 	private By loginButton = By.xpath("//*[@id=\"btnLogin\"]");
 
-	public Dashboard enterCredentials(String value) throws IOException {
+	public Dashboard enterCredentials(EnumType userType) throws IOException {
 		DriverManager.getDriver().findElement(loginButton).click();
-		EnumType type = EnumType.valueOfLabel(value);
+		//EnumType type = EnumType.valueOfLabel(userType);
+		String type =userType.label;
 
 		switch (type) {
 
-		case TEAM_APPROVER:
+		case "admin":
 			type(loginId, ConfigFileReader.getValue("approverusername"));
 			type(loginPassword, ConfigFileReader.getValue("approverpassword"));
 			click(signButton);
 			break;
-		case TEAM_LEADER:
+		case "leader":
 			type(loginId, ConfigFileReader.getValue("leaderusername"));
 			type(loginPassword, ConfigFileReader.getValue("leaderpassword"));
 			click(signButton);

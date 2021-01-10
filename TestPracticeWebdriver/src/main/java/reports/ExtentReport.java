@@ -22,7 +22,9 @@ public class ExtentReport {
 		if (Objects.isNull(extent)) {
 			extent = new ExtentReports();
 			ExtentSparkReporter spark = new ExtentSparkReporter("index.html").viewConfigurer().viewOrder().as(new ViewName[] {ViewName.DASHBOARD,ViewName.TEST,ViewName.CATEGORY}).apply();
-			//spark.config().setDocumentTitle("Automation report");
+			
+			
+			
 			final File CONF = new File(".//src/test/resources/extentconfig.xml");
 			spark.loadXMLConfig(CONF);
 			extent.attachReporter(spark);
@@ -42,7 +44,7 @@ public class ExtentReport {
 	}
 
 	public static void createTest(String testname) {
-		ExtentManager.setExtentTest(extent.createTest(testname));
+		ExtentManager.setExtentTest(extent.createTest(testname).assignDevice("Windows").assignAuthor("Shekhar"));
 	}
 
 	
