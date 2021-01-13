@@ -16,8 +16,9 @@ public class LoginPage extends SelemiumAction {
 	private By loginButton = By.xpath("//*[@id=\"btnLogin\"]");
 
 	public Dashboard enterCredentials(EnumType userType) throws IOException {
-		DriverManager.getDriver().findElement(loginButton).click();
+		//DriverManager.getDriver().findElement(loginButton).click();
 		//EnumType type = EnumType.valueOfLabel(userType);
+		click(loginButton);
 		String type =userType.label;
 
 		switch (type) {

@@ -9,11 +9,11 @@ import org.testng.annotations.BeforeSuite;
 
 import base.Driver;
 import base.Pageinitialize;
+import enums.EnumType;
 
 public class BaseTest implements Pageinitialize {
 
-	static String browser;
-
+	
 	protected BaseTest() {
 		// no one can make object of this class
 	}
@@ -23,13 +23,14 @@ public class BaseTest implements Pageinitialize {
 		Driver.setUpDocker();
 		
 	}
-	@BeforeMethod
-	protected void Start() throws IOException {
 
+	@Override @BeforeMethod
+	public void startDriver() {
+		System.out.println("calling interface function");
 		Driver.initateDriver();
-	
+		
+		
 	}
-
 	@AfterMethod
 	protected void Close() {
 		Driver.quitDriver();
@@ -41,6 +42,9 @@ public class BaseTest implements Pageinitialize {
 	public void CloseD() throws IOException {
 		Driver.closeDocker();
 	}
+
+	
+	
 	
 
 	
