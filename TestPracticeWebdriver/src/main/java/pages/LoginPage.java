@@ -42,4 +42,12 @@ public class LoginPage extends SelemiumAction {
 
 	}
 
+	public void enterCredentials(String username, String password) {
+		click(loginButton);
+		type(loginId,username);
+		type(loginPassword,password);
+		click(signButton);
+		
+	}
+
 }

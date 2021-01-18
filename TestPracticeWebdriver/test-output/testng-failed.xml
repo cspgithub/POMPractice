@@ -7,8 +7,8 @@
         <methods>
           <include name="start"/>
           <include name="Close"/>
+          <include name="veriWithInValidCredentials" invocation-numbers="0 1"/>
           <include name="CloseD"/>
-          <include name="verifyAttendanceWithValidCredentials"/>
           <include name="startDriver"/>
         </methods>
       </class> <!-- testcases.LogInTest -->
