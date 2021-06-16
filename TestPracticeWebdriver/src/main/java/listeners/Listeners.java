@@ -35,27 +35,28 @@ public class Listeners implements ITestListener, ISuiteListener {
 	@Override
 	public void onTestStart(ITestResult result) {
 		ExtentReport.createTest(result.getMethod().getMethodName());
-		
 
 	}
+
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		ExtentLogger.pass(result.getMethod().getMethodName() + "is passed");
-		/*
-		 * try { ExtentLogger.pass(result.getMethod().getMethodName(), "yes"); } catch
-		 * (Exception e) { // TODO Auto-generated catch block e.printStackTrace(); }
-		 */
+		try {
+			ExtentLogger.pass(result.getMethod().getMethodName(), "yes");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
+
 	@Override
 	public void onTestFailure(ITestResult result) {
-		//ExtentLogger.fail(result.getMethod().getMethodName() + "is failed");
-		
-			ExtentLogger.fail(result.getThrowable().getMessage());
-			ExtentLogger.fail(result.getMethod().getMethodName(), "yes");
-		
-		
-		//attach screenshot
+		// ExtentLogger.fail(result.getMethod().getMethodName() + "is failed");
+
+		ExtentLogger.fail(result.getThrowable().getMessage());
+		ExtentLogger.fail(result.getMethod().getMethodName(), "yes");
+
+		// attach screenshot
 	}
 
 }

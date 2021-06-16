@@ -1,5 +1,6 @@
 package pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
@@ -26,7 +27,7 @@ public class SelemiumAction {
 	}
 
 	protected WebElement getWebElement(By by) {
-		wait = new WebDriverWait(DriverManager.getDriver(), 40);
+		wait = new WebDriverWait(DriverManager.getDriver(), 20);
 		return wait.until(ExpectedConditions.presenceOfElementLocated(by));
 	}
 
@@ -47,6 +48,7 @@ public class SelemiumAction {
 			element.sendKeys(Keys.BACK_SPACE);
 		}
 	}
+
 	public void acceptAlert(String action) {
 		sleep(100);
 		Alert alert = (DriverManager.getDriver().switchTo().alert());
@@ -63,6 +65,7 @@ public class SelemiumAction {
 		}
 
 	}
+
 	public List<WebElement> getListOfWebElementByString(String str) {
 		return DriverManager.getDriver().findElements(By.xpath(str));
 	}
@@ -71,5 +74,7 @@ public class SelemiumAction {
 
 		return DriverManager.getDriver().findElements(by);
 	}
+
+	
 
 }

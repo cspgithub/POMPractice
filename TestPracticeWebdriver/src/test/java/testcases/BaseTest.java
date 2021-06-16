@@ -28,8 +28,6 @@ public class BaseTest implements Pageinitialize {
 	public void startDriver() {
 		System.out.println("calling interface function");
 		Driver.initateDriver();
-		
-		
 	}
 	@AfterMethod
 	protected void Close() {
