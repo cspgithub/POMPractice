@@ -22,10 +22,10 @@ public class LogInTest extends BaseTest {
 	 */
 	
 	@Test(dataProvider = "getUserThruExcel",dataProviderClass = DataProviderClass.class)
-	public void veriWithValidCredentials(Map<String,String>map) throws IOException {
+	public void verifyAttendanceLink(Map<String,String>map) throws IOException {
 		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
 		login.enterCredentials(map.get("username"),map.get("password"));
-		assertTrue(dashboard.verifyAttendanceLinkInDashboard("Vaccine111"));
+		assertTrue(dashboard.verifyAttendanceLinkInDashboard("Attendance"));
 //		System.out.println(userType.getUsername());
 //		System.out.println(userType.getPassword());
 	}

@@ -1,6 +1,5 @@
 package pages;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
@@ -27,7 +26,7 @@ public class SelemiumAction {
 	}
 
 	protected WebElement getWebElement(By by) {
-		wait = new WebDriverWait(DriverManager.getDriver(), 20);
+		wait = new WebDriverWait(DriverManager.getDriver(), 15);
 		return wait.until(ExpectedConditions.presenceOfElementLocated(by));
 	}
 
