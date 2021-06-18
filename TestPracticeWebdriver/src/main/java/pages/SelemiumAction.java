@@ -1,20 +1,24 @@
 package pages;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.function.Function;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import base.DriverManager;
 import reports.ExtentLogger;
 
 public class SelemiumAction {
 
-	WebDriverWait wait;
 
 	protected void sleep(long ms) {
 		try {
@@ -26,8 +30,20 @@ public class SelemiumAction {
 	}
 
 	protected WebElement getWebElement(By by) {
-		wait = new WebDriverWait(DriverManager.getDriver(), 15);
-		return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+		// wait = new WebDriverWait(DriverManager.getDriver(), 15);
+		// return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+
+		// Waiting 30 seconds for an element to be present on the page, checking
+		// for its presence once every 5 seconds.
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(DriverManager.getDriver()).withTimeout(Duration.ofSeconds(15))
+				.pollingEvery(Duration.ofSeconds(5)).ignoring(NoSuchElementException.class);
+
+		WebElement webElement = wait.until(new Function<WebDriver, WebElement>() {
+			public WebElement apply(WebDriver driver) {
+				return driver.findElement(by);
+			}
+		});
+		return webElement;
 	}
 
 	protected void click(By by) {
@@ -70,10 +86,13 @@ public class SelemiumAction {
 	}
 
 	public List<WebElement> getListOfWebElementByElement(By by) {
-
 		return DriverManager.getDriver().findElements(by);
 	}
 
-	
+	public void highLightWebElement(By by) {
+		JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+		js.executeScript("arguments[0].setAttribute('style', 'background: blue; border: 2px solid green;');",
+				getWebElement(by));
+	}
 
 }

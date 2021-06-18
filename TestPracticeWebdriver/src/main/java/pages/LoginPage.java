@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 
-import base.DriverManager;
 import enums.EnumType;
 import utility.ConfigFileReader;
 

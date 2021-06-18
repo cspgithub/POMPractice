@@ -93,6 +93,7 @@ public class Driver {
 		}
 		DriverManager.setDriver(driver);
 		DriverManager.getDriver().manage().deleteAllCookies();
+		DriverManager.getDriver().manage().window().maximize();
 		DriverManager.getDriver().get(ConfigFileReader.getValue("url"));
 
 	}

@@ -2,13 +2,10 @@
 package pages;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import base.DriverManager;
-import reports.ExtentLogger;
 
 public class Dashboard extends SelemiumAction {
 
@@ -16,97 +13,41 @@ public class Dashboard extends SelemiumAction {
 
 	private By actionWindow = By.xpath("//*[@id=\"myModal\"]/div/div");
 
-	private By markAttendanceLinkInActionsModal = By.xpath(
-			"//div[@data-backdrop='static']//div[@class='modal-content']//b[text()=' Actions ']/following::a[text()='Click Here To Mark Attendance for Today']");
-
-	private By selfDeclarationModal = By.xpath(
-			"//div[@data-backdrop='static' and @id='SmQuestion']//div[@class='modal-content']//b[text()=' Self-declaration ']");
-
+	/*
+	 * private By markAttendanceLinkInActionsModal = By.xpath(
+	 * "//div[@data-backdrop='static']//div[@class='modal-content']//b[text()=' Actions ']/following::a[text()='Click Here To Mark Attendance for Today']"
+	 * );
+	 * 
+	 * private By selfDeclarationModal = By.xpath(
+	 * "//div[@data-backdrop='static' and @id='SmQuestion']//div[@class='modal-content']//b[text()=' Self-declaration ']"
+	 * );
+	 */
 	private By submitButton = By.xpath("//*[@id=\"btnsubmit\"]");
 	// private By closeButton = By.xpath("//*[@id=\"btnsubmit\"]");
 
-	private By actonsModal = By
-			.xpath("//div[@data-backdrop='static']//div[@class='modal-content']//b[text()=' Actions ']");
-
+	/*
+	 * private By actonsModal = By
+	 * .xpath("//div[@data-backdrop='static']//div[@class='modal-content']//b[text()=' Actions ']"
+	 * );
+	 */
 	private By actionWindowCloseButton = By.xpath("//*[@id=\"myModal\"]/div/div/div[3]/button");
-
-	public boolean verifySelfDeclationWindowLoaded() {
-		sleep(300);
-		boolean status = false;
-		try {
-			if (getWebElement(selfDeclarationModal).isDisplayed()) {
-				status = true;
-			}
-		} catch (Exception e) {
-			System.out.println("self-declaration modal not present");
-
-		}
-		return status;
-
-	}
-
-	public boolean accessAttendanceFromDashboard() {
-
-		click(attendanceLink);
-		sleep(2000);
-		return true;
-
-	}
-
-	public boolean verifyActionWindowLoaded() {
-		sleep(300);
-		boolean status = false;
-		try {
-			if (getWebElement(actonsModal).isDisplayed()) {
-				return true;
-			}
-		} catch (Exception e) {
-			System.out.println("action modal not present");
-
-		}
-		return status;
-
-	}
-
-	public void actionInSelfModalWindow(String modalWindowName, String option) {
-		String s = String.format(
-				"//div[@class='modal-content']//b[contains(text(),'%s')]/following::table//input[@name='RequestType']",
-				modalWindowName);
-		List<WebElement> radioButtons = getListOfWebElementByString(s);
-		for (WebElement options : radioButtons) {
-			if (options.getAttribute("id").trim().equals(option)) {
-				options.click();
-				getWebElement(submitButton).click();
-				acceptAlert("Accept");
-				sleep(1000);
-				break;
-			} else {
-				System.out.println("option not avaiable");
-			}
-		}
-
-	}
-
-	public void actionInActionModalWindow() {
-
-		click(markAttendanceLinkInActionsModal);
-	}
 
 	public boolean verifyAttendanceLinkInDashboard(String actionName) {
 		By self = By
 				.xpath("//div[@id='SmQuestion']//h4[@class='modal-title']/b[contains(text(),' Self-declaration ')]");
 		try {
-			if (getWebElement(self).isDisplayed()) {
+			if (getWebElement(self) != null) {
 				By option = By.xpath(
 						"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
 				sleep(200);
 				click(option);
 				click(submitButton);
+				acceptAlert("Accept");
 			}
 		} catch (Exception e) {
 			e.getMessage();
 		} finally {
-			if (getWebElement(actionWindow).isDisplayed()) {
+			if (getWebElement(actionWindow) != null) {
 				String action = String.format(
 						"//div[@class='modal-body']/table/tbody//td[contains(text(),'%s')]/following::tr[1]//a",
 						actionName);
@@ -116,7 +57,10 @@ public class Dashboard extends SelemiumAction {
 					try {
 						getWebElement(values).isDisplayed();
 						click(values);
-						acceptAlert("Accept");// need to test behavior tomorrow
+						// need to test behavior tomorrow
+						By popupAfterclickingAttendanceLink = By.xpath(
+								"//*[@id=\"myModal\"]/div/div//button[@class='btn btn-primary' and text()='Close']");
+						click(popupAfterclickingAttendanceLink);
 						break;
 					} catch (Exception attMessage) {
 						attMessage.getMessage();
@@ -126,7 +70,7 @@ public class Dashboard extends SelemiumAction {
 					break;
 
 				case "Percipio":
-				case "Vaccine ":
+				case "Vaccine":
 					try {
 						getWebElement(values).isDisplayed();
 						int count = actionOnItemInActionsModal(values);
@@ -155,6 +99,7 @@ public class Dashboard extends SelemiumAction {
 				// close button of actionwindow
 			}
 		}
+		highLightWebElement(attendanceLink);
 		return getWebElement(attendanceLink).isDisplayed();
 	}
 

@@ -43,7 +43,6 @@ public class Listeners implements ITestListener, ISuiteListener {
 		try {
 			ExtentLogger.pass(result.getMethod().getMethodName(), "yes");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
