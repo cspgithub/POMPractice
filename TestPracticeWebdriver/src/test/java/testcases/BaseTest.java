@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeSuite;
 
 import base.Driver;
 import base.Pageinitialize;
-import enums.EnumType;
 
 public class BaseTest implements Pageinitialize {
 

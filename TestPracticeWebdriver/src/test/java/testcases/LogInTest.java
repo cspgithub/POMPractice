@@ -1,6 +1,6 @@
 package testcases;
 
-import static org.testng.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.Map;
@@ -21,14 +21,23 @@ public class LogInTest extends BaseTest {
 	 * }
 	 */
 	
+//	@Test(dataProvider = "getUserThruExcel",dataProviderClass = DataProviderClass.class)
+//	public void verifyAttendanceLinkAttendance(Map<String,String>map) throws IOException {
+//		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
+//		//login.enterCredentials(null).verifyAttendanceLinkInDashboard(null);
+//		login.enterCredentials(map.get("username"),map.get("password"));
+//		assertTrue(dashboard.verifyAttendanceLinkInDashboard("Attendance"));
+////		System.out.println(userType.getUsername());
+////		System.out.println(userType.getPassword());
+//	}
+	
 	@Test(dataProvider = "getUserThruExcel",dataProviderClass = DataProviderClass.class)
-	public void verifyAttendanceLinkAttendance(Map<String,String>map) throws IOException {
+	public void verifyAttendance(Map<String,String>map) throws IOException {
 		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
 		//login.enterCredentials(null).verifyAttendanceLinkInDashboard(null);
 		login.enterCredentials(map.get("username"),map.get("password"));
-		assertTrue(dashboard.verifyAttendanceLinkInDashboard("Attendance"));
-//		System.out.println(userType.getUsername());
-//		System.out.println(userType.getPassword());
+		dashboard.verifyAttendanceLinkInDashboard("Attendance");
+		assertTrue(dashboard.verifyAttendanceMarkedForDay());
 	}
 	
 }

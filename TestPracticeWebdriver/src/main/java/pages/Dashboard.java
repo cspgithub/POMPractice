@@ -103,6 +103,12 @@ public class Dashboard extends SelemiumAction {
 		return getWebElement(attendanceLink).isDisplayed();
 	}
 
+	public boolean verifyAttendanceMarkedForDay() {
+		click(attendanceLink);
+		return actionOnAttendanceTab();
+
+	}
+
 	public int actionOnItemInActionsModal(By by) {
 		getWebElement(by).click();
 		ArrayList<String> newTab = new ArrayList<String>(DriverManager.getDriver().getWindowHandles());
@@ -121,6 +127,34 @@ public class Dashboard extends SelemiumAction {
 		// change focus back to old tab
 		DriverManager.getDriver().switchTo().window(oldTab);
 
+	}
+
+	public boolean actionOnAttendanceTab() {
+		// considering that there is only one tab opened in that point.
+		String oldTab = DriverManager.getDriver().getWindowHandle();
+		boolean foundElement = false;
+		ArrayList<String> newTab = new ArrayList<String>(DriverManager.getDriver().getWindowHandles());
+		newTab.remove(oldTab);
+		// change focus to new tab
+		DriverManager.getDriver().switchTo().window(newTab.get(0));
+		// Do what you want here, you are in the new tab
+		By attendanceTable = By.xpath("//*[@id=\"ctl00_ContentPlaceHolder1_calAttendance\"]/tbody");
+		getWebElement(attendanceTable).isDisplayed();
+		String date = formatCurrentLocalDate();
+		String a = String.format(
+				"//*[@id='ctl00_ContentPlaceHolder1_calAttendance']/tbody//tr/td[@class='aas_Present']//a[@title='%s']/following::td[text()='Present']/../..",
+				date);
+		By markedDate = By.xpath(a);
+		try {
+			getWebElement(markedDate).isDisplayed();
+			foundElement = true;
+		} catch (Exception e) {
+			foundElement = false;
+		}
+		// DriverManager.getDriver().close();
+		// change focus back to old tab
+		// DriverManager.getDriver().switchTo().window(oldTab);
+		return foundElement;
 	}
 
 }

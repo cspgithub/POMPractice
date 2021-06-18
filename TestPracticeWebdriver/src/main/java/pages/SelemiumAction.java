@@ -1,6 +1,8 @@
 package pages;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.function.Function;
 
@@ -18,7 +20,6 @@ import base.DriverManager;
 import reports.ExtentLogger;
 
 public class SelemiumAction {
-
 
 	protected void sleep(long ms) {
 		try {
@@ -91,8 +92,13 @@ public class SelemiumAction {
 
 	public void highLightWebElement(By by) {
 		JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-		js.executeScript("arguments[0].setAttribute('style', 'background: blue; border: 2px solid green;');",
-				getWebElement(by));
+		js.executeScript("arguments[0].setAttribute('style','background: yellow; border: 2px solid red;');", getWebElement(by));
+	}
+
+	public String formatCurrentLocalDate() {
+		String date = LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM dd"));
+		return date;
+
 	}
 
 }
