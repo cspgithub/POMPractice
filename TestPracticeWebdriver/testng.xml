@@ -9,7 +9,7 @@
 		<classes>
 			<!-- <class name="com.workflow.dcp.testcases.LogInTest" /> -->
 			<class name="testcases.LogInTest" />
-			<!-- <class name="testcases.LogInTest2" /> -->
+			<class name="testcases.LogInTest2" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
