@@ -103,9 +103,18 @@ public class Dashboard extends SelemiumAction {
 		return getWebElement(attendanceLink).isDisplayed();
 	}
 
-	public boolean verifyAttendanceMarkedForDay() {
+	public boolean verifyAttendanceMarkedForDay(String date) {
 		click(attendanceLink);
-		return actionOnAttendanceTab();
+//		boolean status1 =false;
+//		try {
+			return actionOnAttendanceTab(date);
+//			status1=true;
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			status1=false;
+//		}
+//		return status1;
 
 	}
 
@@ -129,10 +138,10 @@ public class Dashboard extends SelemiumAction {
 
 	}
 
-	public boolean actionOnAttendanceTab() {
+	public boolean actionOnAttendanceTab(String date){
 		// considering that there is only one tab opened in that point.
 		String oldTab = DriverManager.getDriver().getWindowHandle();
-		boolean foundElement = false;
+		//boolean foundElement = false;
 		ArrayList<String> newTab = new ArrayList<String>(DriverManager.getDriver().getWindowHandles());
 		newTab.remove(oldTab);
 		// change focus to new tab
@@ -140,21 +149,16 @@ public class Dashboard extends SelemiumAction {
 		// Do what you want here, you are in the new tab
 		By attendanceTable = By.xpath("//*[@id=\"ctl00_ContentPlaceHolder1_calAttendance\"]/tbody");
 		getWebElement(attendanceTable).isDisplayed();
-		String date = formatCurrentLocalDate();
+		//String date = formatCurrentLocalDate();
 		String a = String.format(
 				"//*[@id='ctl00_ContentPlaceHolder1_calAttendance']/tbody//tr/td[@class='aas_Present']//a[@title='%s']/following::td[text()='Present']/../..",
 				date);
 		By markedDate = By.xpath(a);
-		try {
-			getWebElement(markedDate).isDisplayed();
-			foundElement = true;
-		} catch (Exception e) {
-			foundElement = false;
-		}
 		// DriverManager.getDriver().close();
 		// change focus back to old tab
 		// DriverManager.getDriver().switchTo().window(oldTab);
-		return foundElement;
+		highLightWebElement(markedDate);
+		return getWebElement(markedDate).isDisplayed();
 	}
 
 }
