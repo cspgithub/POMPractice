@@ -76,8 +76,8 @@ public class Driver {
 		System.out.println("Browser Selected :" + browser);
 		switch (browser) {
 		case "chrome":
-			WebDriverManager.chromedriver().setup();
-			//System.setProperty("webdriver.chrome.driver", FrameworkConstants.getChromedriverpath());
+			//WebDriverManager.chromedriver().setup();
+			System.setProperty("webdriver.chrome.driver", FrameworkConstants.getChromedriverpath());
 			driver = new ChromeDriver();
 			break;
 
