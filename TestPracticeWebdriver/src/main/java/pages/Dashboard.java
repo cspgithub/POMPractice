@@ -6,30 +6,14 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 
 import base.DriverManager;
+import utility.Utilities;
 
 public class Dashboard extends SelemiumAction {
+	Utilities utility = new Utilities();
 
 	private By attendanceLink = By.xpath("//a[contains(text(),'Attendance')and @class='thumb']");
-
 	private By actionWindow = By.xpath("//*[@id=\"myModal\"]/div/div");
-
-	/*
-	 * private By markAttendanceLinkInActionsModal = By.xpath(
-	 * "//div[@data-backdrop='static']//div[@class='modal-content']//b[text()=' Actions ']/following::a[text()='Click Here To Mark Attendance for Today']"
-	 * );
-	 * 
-	 * private By selfDeclarationModal = By.xpath(
-	 * "//div[@data-backdrop='static' and @id='SmQuestion']//div[@class='modal-content']//b[text()=' Self-declaration ']"
-	 * );
-	 */
 	private By submitButton = By.xpath("//*[@id=\"btnsubmit\"]");
-	// private By closeButton = By.xpath("//*[@id=\"btnsubmit\"]");
-
-	/*
-	 * private By actonsModal = By
-	 * .xpath("//div[@data-backdrop='static']//div[@class='modal-content']//b[text()=' Actions ']"
-	 * );
-	 */
 	private By actionWindowCloseButton = By.xpath("//*[@id=\"myModal\"]/div/div/div[3]/button");
 
 	public boolean verifyAttendanceLinkInDashboard(String actionName) {
@@ -47,10 +31,10 @@ public class Dashboard extends SelemiumAction {
 					"//div[@id='SmQuestion']//h4[@class='modal-title']/b[contains(text(),' Self-declaration ')]");
 			try {
 				if (getWebElement(self) != null) {
-					By option = By.xpath(
+					By optioninSelfDeclareModal = By.xpath(
 							"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
 					sleep(200);
-					click(option);
+					click(optioninSelfDeclareModal);
 					click(submitButton);
 					By selfCloseButton = By.xpath("");
 					click(selfCloseButton);//to test it again
@@ -68,7 +52,6 @@ public class Dashboard extends SelemiumAction {
 						try {
 							getWebElement(values).isDisplayed();
 							click(values);
-							// need to test behavior tomorrow
 							By popupAfterclickingAttendanceLink = By.xpath(
 									"//*[@id=\"myModal\"]/div/div//button[@class='btn btn-primary' and text()='Close']");
 							click(popupAfterclickingAttendanceLink);
@@ -118,17 +101,7 @@ public class Dashboard extends SelemiumAction {
 
 	public boolean verifyAttendanceMarkedForDay() {
 		click(attendanceLink);
-//		boolean status1 =false;
-//		try {
 		return actionOnAttendanceTab();
-//			status1=true;
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			status1=false;
-//		}
-//		return status1;
-
 	}
 
 	public int actionOnItemInActionsModal(By by) {
@@ -162,7 +135,7 @@ public class Dashboard extends SelemiumAction {
 		// Do what you want here, you are in the new tab
 		By attendanceTable = By.xpath("//*[@id=\"ctl00_ContentPlaceHolder1_calAttendance\"]/tbody");
 		getWebElement(attendanceTable).isDisplayed();
-		String date = formatCurrentLocalDate();
+		String date = utility.formatCurrentLocalDate();
 		String a = String.format(
 				"//*[@id='ctl00_ContentPlaceHolder1_calAttendance']/tbody//tr/td[@class='aas_Present']//a[@title='%s']/following::td[text()='Present']/../..",
 				date);
