@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
 import base.DriverManager;
+import reports.ExtentLogger;
 
 public class SelemiumAction {
 
@@ -44,16 +45,16 @@ public class SelemiumAction {
 		return webElement;
 	}
 
-	
-	protected void click(By by) {
+	protected void click(By by, String elementName) {
 		getWebElement(by).click();
-		//ExtentLogger.pass("clicked sussefully");
+		ExtentLogger.pass(elementName + "  clicked successfully");
 
 	}
 
-	protected void type(By by, String value) {
+	protected void type(By by, String value, String elementName) {
 		clearWebField(getWebElement(by));
 		getWebElement(by).sendKeys(value);
+		ExtentLogger.pass(elementName + "  typed  successfully");
 
 	}
 
@@ -90,10 +91,8 @@ public class SelemiumAction {
 
 	public void highLightWebElement(By by) {
 		JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-		js.executeScript("arguments[0].setAttribute('style','background: yellow; border: 2px solid red;');", getWebElement(by));
+		js.executeScript("arguments[0].setAttribute('style','background: yellow; border: 2px solid red;');",
+				getWebElement(by));
 	}
-
-	
-	
 
 }
