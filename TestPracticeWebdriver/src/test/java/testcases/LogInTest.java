@@ -34,7 +34,6 @@ public class LogInTest extends BaseTest {
 	@Test(dataProvider = "getUserThruExcel",dataProviderClass = DataProviderClass.class)
 	public void verifyAttendanceForCurrentDate(Map<String,String>map) throws IOException {
 		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
-		//login.enterCredentials(null).verifyAttendanceLinkInDashboard(null);
 		login.enterCredentials(map.get("username"),map.get("password"));
 		dashboard.verifyAttendanceLinkInDashboard("Attendance");
 		assertTrue(dashboard.verifyAttendanceMarkedForDay());

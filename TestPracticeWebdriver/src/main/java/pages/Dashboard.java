@@ -2,8 +2,10 @@
 package pages;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import base.DriverManager;
 import utility.Utilities;
@@ -30,68 +32,37 @@ public class Dashboard extends SelemiumAction {
 			By self = By.xpath(
 					"//div[@id='SmQuestion']//h4[@class='modal-title']/b[contains(text(),' Self-declaration ')]");
 			try {
-				if (getWebElement(self) != null) {
+				if (getWebElement(self).isDisplayed()) {
 					By optioninSelfDeclareModal = By.xpath(
 							"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
 					sleep(200);
 					click(optioninSelfDeclareModal);
 					click(submitButton);
 					By selfCloseButton = By.xpath("");
-					click(selfCloseButton);//to test it again
+					click(selfCloseButton);// to test it again
 				}
 			} catch (Exception selfModal) {
 				selfModal.getMessage();
 			} finally {
 				if (getWebElement(actionWindow) != null) {
-					String action = String.format(
+					String actionAttendance = String.format(
 							"//div[@class='modal-body']/table/tbody//td[contains(text(),'%s')]/following::tr[1]//a",
 							actionName);
-					By values = By.xpath(action);
-					switch (actionName) {
-					case "Attendance":
-						try {
-							getWebElement(values).isDisplayed();
-							click(values);
+					By attendanceLink = By.xpath(actionAttendance);
+					List<WebElement> listOfItems = getListOfWebElementByElement(attendanceLink);
+					for (WebElement webElement : listOfItems) {
+						String linkText = webElement.getText().toString();
+						if (linkText.contains(actionName.toLowerCase())) {
+							webElement.click();
 							By popupAfterclickingAttendanceLink = By.xpath(
 									"//*[@id=\"myModal\"]/div/div//button[@class='btn btn-primary' and text()='Close']");
 							click(popupAfterclickingAttendanceLink);
 							break;
-						} catch (Exception attMessage) {
-							attMessage.getMessage();
-						} finally {
-							click(actionWindowCloseButton);
 						}
-						break;
-
-					case "Percipio":
-					case "Vaccine":
-						try {
-							getWebElement(values).isDisplayed();
-							int count = actionOnItemInActionsModal(values);
-							if (count > 1) {
-								actionOnNewTab(values);
-							}
-						} catch (Exception e2) {
-							e2.getMessage();
-						} finally {
-							click(actionWindowCloseButton);
-						}
-						break;
 					}
 
-					/*
-					 * By values =
-					 * By.xpath("//*[@id=\"myModal\"]//div[@class=\"modal-body\"]/table//td");
-					 * List<WebElement> listOfActions = getListOfWebElementByElement(values);
-					 * List<String> listOfActionsPresentText = new ArrayList<>(); for (int i = 0; i
-					 * < listOfActions.size(); i++) { // loading text of each element in to array
-					 * all_elements_text
-					 * listOfActionsPresentText.add(listOfActions.get(i).getText()); } for (String
-					 * string : listOfActionsPresentText) { if (string.contains(actionName)) {
-					 * System.out.println(actionName + "found in action window"); break; } }
-					 */
-					// close button of actionwindow
 				}
+				click(actionWindowCloseButton);
 			}
 		}
 
