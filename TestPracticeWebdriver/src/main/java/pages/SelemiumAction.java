@@ -17,7 +17,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
 import base.DriverManager;
-import reports.ExtentLogger;
 
 public class SelemiumAction {
 
@@ -37,7 +36,7 @@ public class SelemiumAction {
 		// Waiting 30 seconds for an element to be present on the page, checking
 		// for its presence once every 5 seconds.
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(DriverManager.getDriver()).withTimeout(Duration.ofSeconds(15))
-				.pollingEvery(Duration.ofSeconds(5));//.ignoring(NoSuchElementException.class)
+				.pollingEvery(Duration.ofSeconds(5)).ignoring(NoSuchElementException.class);
 
 		WebElement webElement = wait.until(new Function<WebDriver, WebElement>() {
 			public WebElement apply(WebDriver driver) {
@@ -47,6 +46,7 @@ public class SelemiumAction {
 		return webElement;
 	}
 
+	
 	protected void click(By by) {
 		getWebElement(by).click();
 		//ExtentLogger.pass("clicked sussefully");
