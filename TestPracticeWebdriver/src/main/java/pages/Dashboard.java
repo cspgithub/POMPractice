@@ -103,11 +103,11 @@ public class Dashboard extends SelemiumAction {
 		return getWebElement(attendanceLink).isDisplayed();
 	}
 
-	public boolean verifyAttendanceMarkedForDay(String date) {
+	public boolean verifyAttendanceMarkedForDay() {
 		click(attendanceLink);
 //		boolean status1 =false;
 //		try {
-			return actionOnAttendanceTab(date);
+			return actionOnAttendanceTab();
 //			status1=true;
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
@@ -138,7 +138,7 @@ public class Dashboard extends SelemiumAction {
 
 	}
 
-	public boolean actionOnAttendanceTab(String date){
+	public boolean actionOnAttendanceTab(){
 		// considering that there is only one tab opened in that point.
 		String oldTab = DriverManager.getDriver().getWindowHandle();
 		//boolean foundElement = false;
@@ -149,7 +149,7 @@ public class Dashboard extends SelemiumAction {
 		// Do what you want here, you are in the new tab
 		By attendanceTable = By.xpath("//*[@id=\"ctl00_ContentPlaceHolder1_calAttendance\"]/tbody");
 		getWebElement(attendanceTable).isDisplayed();
-		//String date = formatCurrentLocalDate();
+		String date = formatCurrentLocalDate();
 		String a = String.format(
 				"//*[@id='ctl00_ContentPlaceHolder1_calAttendance']/tbody//tr/td[@class='aas_Present']//a[@title='%s']/following::td[text()='Present']/../..",
 				date);
