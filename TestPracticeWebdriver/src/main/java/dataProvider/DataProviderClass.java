@@ -11,13 +11,7 @@ import org.testng.annotations.DataProvider;
 
 public class DataProviderClass {
 
-	@DataProvider
-	public UserType[] getUser() {
-		return new UserType[] { new UserType("77378", "Coforge@2021!")
-
-		};
-
-	}
+	
 
 	@DataProvider
 	public Object[] getUserThruExcel() throws IOException {
