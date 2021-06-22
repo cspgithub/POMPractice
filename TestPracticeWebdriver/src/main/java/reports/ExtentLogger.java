@@ -26,6 +26,11 @@ public class ExtentLogger {
 		ExtentManager.getExtTest().fail(message);
 	}
 
+	public static void info(String message) {
+
+		ExtentManager.getExtTest().info(message);
+	}
+
 	public static void skip(String message) {
 
 		ExtentManager.getExtTest().skip(message);
@@ -45,8 +50,8 @@ public class ExtentLogger {
 
 	}
 
-	public static void fail(String message, String isScreenshotreuired){
-		
+	public static void fail(String message, String isScreenshotreuired) {
+
 		if (ConfigFileReader.getValue("failedstepsscreenshots").equalsIgnoreCase("yes")
 				&& ConfigFileReader.getValue("screenshotsrequired").equalsIgnoreCase("yes")) {
 
@@ -59,7 +64,7 @@ public class ExtentLogger {
 	}
 
 	public static void skip(String message, String isScreenshotreuired) throws Exception {
-		
+
 		if (ConfigFileReader.getValue("SkippedStepsScreenshots").equalsIgnoreCase("yes")
 				&& ConfigFileReader.getValue("screenshotsrequired").equalsIgnoreCase("yes")) {
 
@@ -74,9 +79,7 @@ public class ExtentLogger {
 	public static String getBase64Image() {
 
 		return ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BASE64);
-	
-	}
 
-	
+	}
 
 }

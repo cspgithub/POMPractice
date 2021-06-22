@@ -34,7 +34,6 @@ public class LoginPage extends SelemiumAction {
 	public Dashboard usingCorrectCredentials(String username, String password) {
 		click(loginButton,"login button");
 		type(loginId,username,"username");
-		//type(loginPassword,Utilities.getDecodedString(password),"password");
 		type(loginPassword, Utilities.getDecodedString(password), "password");
 		click(signButton,"signin button");
 		ExtentLogger.pass("logged in successfully");

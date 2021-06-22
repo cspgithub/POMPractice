@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 import base.FrameworkConstants;
+import exception.PropertyNotFoundException;
 
 public final class ConfigFileReader {// final : no other can extend this class
 
@@ -40,7 +41,7 @@ public final class ConfigFileReader {// final : no other can extend this class
 
 	public static String getValue(String value) {
 		if (Objects.isNull(value) || Objects.isNull(BY_VALUE.get(value))) {
-			
+			throw new PropertyNotFoundException(value + "  not fpund in config file,pls check and resolve");
 		}
 		return BY_VALUE.get(value);
 	}
