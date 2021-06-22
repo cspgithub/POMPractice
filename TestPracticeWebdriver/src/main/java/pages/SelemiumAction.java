@@ -44,7 +44,20 @@ public class SelemiumAction {
 		});
 		return webElement;
 	}
+	protected boolean elementIsPresent(By by) {
+		boolean found = false;
+		try {
+			if(getWebElement(by).isDisplayed()) {
+				found = true;
+			}
+			
+		} catch (Exception e) {
+			found = false;
+		}
+		return found;
 
+	}
+	
 	protected void click(By by, String elementName) {
 		getWebElement(by).click();
 		ExtentLogger.pass(elementName + "  clicked successfully");

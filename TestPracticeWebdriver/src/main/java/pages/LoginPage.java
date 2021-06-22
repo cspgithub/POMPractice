@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 
 import reports.ExtentLogger;
+import utility.Utilities;
 
 public class LoginPage extends SelemiumAction {
 	private By loginId = By.xpath("//*[@id=\"txtEmpCode\"]");
@@ -33,9 +34,10 @@ public class LoginPage extends SelemiumAction {
 	public Dashboard usingCorrectCredentials(String username, String password) {
 		click(loginButton,"login button");
 		type(loginId,username,"username");
-		type(loginPassword,utility.Utilities.getDecodedString(password),"password");
+		//type(loginPassword,Utilities.getDecodedString(password),"password");
+		type(loginPassword, Utilities.getDecodedString(password), "password");
 		click(signButton,"signin button");
-		ExtentLogger.pass("logged in successfull");
+		ExtentLogger.pass("logged in successfully");
 		return new Dashboard();
 	}
 

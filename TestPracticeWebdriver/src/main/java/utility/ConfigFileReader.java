@@ -40,7 +40,7 @@ public final class ConfigFileReader {// final : no other can extend this class
 
 	public static String getValue(String value) {
 		if (Objects.isNull(value) || Objects.isNull(BY_VALUE.get(value))) {
-
+			
 		}
 		return BY_VALUE.get(value);
 	}
