@@ -20,6 +20,10 @@ public class Utilities {
 		return new String(Base64.getDecoder().decode(Tokenizer(data).getBytes()));
 	}
 
+	public static String getDecoded(String data) {
+		return new String(Base64.getDecoder().decode(data.getBytes()));
+	}
+
 	public static String Tokenizer(String data) {
 
 		if (!data.contains("config:")) {
@@ -27,7 +31,7 @@ public class Utilities {
 		}
 		Map<String, String> map = new HashMap<String, String>();
 		String[] keyValue = data.split(":");
-		if (keyValue.length<=1) {
+		if (keyValue.length <= 1) {
 			throw new PropertyNotFoundException(data + "  not a valid data");
 		}
 		map.put(keyValue[0], keyValue[1]);

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 
 import reports.ExtentLogger;
 import utility.Utilities;
+import utility.YamlFileReader;
 
 public class LoginPage extends SelemiumAction {
 	private By loginId = By.xpath("//*[@id=\"txtEmpCode\"]");
@@ -31,13 +32,23 @@ public class LoginPage extends SelemiumAction {
 	 * }
 	 */
 
-	public Dashboard usingCorrectCredentials(String username, String password) {
+	public Dashboard usingCredentials(String username, String password) {
 		click(loginButton,"login button");
 		type(loginId,username,"username");
 		type(loginPassword, Utilities.getDecodedString(password), "password");
 		click(signButton,"signin button");
-		ExtentLogger.pass("logged in successfully");
+		if( !new Dashboard().dashboardloaded()){
+			ExtentLogger.info("login unscussfull");
+		}
+		return new Dashboard();
+		
+		
+	}
+	public Dashboard usingCorrectCredentialsYaml(String username,String password) {
+		click(loginButton,"login button");
+		type(loginId,YamlFileReader.getValue(username),"username");
+		type(loginPassword, Utilities.getDecoded(YamlFileReader.getValue(password)), "password");
+		click(signButton,"signin button");
 		return new Dashboard();
 	}
-
 }

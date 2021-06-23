@@ -2,12 +2,8 @@ package testcases;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
-import java.util.Map;
-
 import org.testng.annotations.Test;
 
-import dataProvider.DataProviderClass;
 import reports.ExtentLogger;
 
 public class LogInTest2 extends BaseTest {
@@ -23,11 +19,11 @@ public class LogInTest2 extends BaseTest {
 	 */
 	
 	
-	@Test(dataProvider = "getUserThruExcel", dataProviderClass = DataProviderClass.class)
-	public void verifyAttendanceFor(Map<String, String> map) throws IOException {
+	@Test
+	public void verifyAttendanceFor(){
 		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
 		ExtentLogger.info("TC started");
-		loginIntoIengagePortal.usingCorrectCredentials(map.get("username"), map.get("password"))
+		loginIntoIengagePortal.usingCorrectCredentialsYaml("admin","adminpassword")
 				.verifingAttendanceLinkInDashboard("Attendance");
 		assertTrue(dashboard.verifyAttendanceMarkedForDay());
 	}

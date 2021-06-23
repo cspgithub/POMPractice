@@ -23,6 +23,11 @@ public class Dashboard extends SelemiumAction {
 	private By optioninSelfDeclareModal = By.xpath(
 			"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
 
+	
+	public boolean dashboardloaded() {
+		String expected = "https://iengage.coforgetech.com/ess2/HomePage/Welcome";
+		return getURL().equalsIgnoreCase(expected);
+	}
 	public boolean verifingAttendanceLinkInDashboard(String actionName) {
 		if (elementIsPresent(vaccinationMessage)) {
 			By saveButton = By.xpath("//*[@id=\"btnSave\"]");

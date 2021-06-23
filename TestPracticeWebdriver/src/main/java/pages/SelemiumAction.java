@@ -28,6 +28,9 @@ public class SelemiumAction {
 		}
 	}
 
+	protected String getURL() {
+		return DriverManager.getDriver().getCurrentUrl();
+	}
 	protected WebElement getWebElement(By by) {
 		// wait = new WebDriverWait(DriverManager.getDriver(), 15);
 		// return wait.until(ExpectedConditions.presenceOfElementLocated(by));
