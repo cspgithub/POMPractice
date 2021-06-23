@@ -17,7 +17,7 @@ public class DataProviderClass {
 
 	@DataProvider(name = "userData")
 	public Object[] userFormData(ITestNGMethod testContext) throws Exception {
-		if (testContext.getMethodName().equals("verifyAttendanceForCurrentDateInvalid")) {
+		if (testContext.getMethodName().equals("verifyAttendanceForCurrentDateInvalidUser")) {
 			return getUserThruExcel(excelPath, "invalidScenario");
 		} else {
 			return getUserThruExcel(excelPath, "validScenario");
