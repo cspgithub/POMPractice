@@ -31,13 +31,14 @@ public class SelemiumAction {
 	protected String getURL() {
 		return DriverManager.getDriver().getCurrentUrl();
 	}
+
 	protected WebElement getWebElement(By by) {
 		// wait = new WebDriverWait(DriverManager.getDriver(), 15);
 		// return wait.until(ExpectedConditions.presenceOfElementLocated(by));
 
 		// Waiting 30 seconds for an element to be present on the page, checking
 		// for its presence once every 5 seconds.
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(DriverManager.getDriver()).withTimeout(Duration.ofSeconds(15))
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(DriverManager.getDriver()).withTimeout(Duration.ofSeconds(40))
 				.pollingEvery(Duration.ofSeconds(5)).ignoring(NoSuchElementException.class);
 
 		WebElement webElement = wait.until(new Function<WebDriver, WebElement>() {
@@ -47,22 +48,31 @@ public class SelemiumAction {
 		});
 		return webElement;
 	}
+
 	protected boolean elementIsPresent(By by) {
 		boolean found = false;
 		try {
-			if(getWebElement(by).isDisplayed()) {
+			if (getWebElement(by).isDisplayed()) {
 				found = true;
 			}
-			
+
 		} catch (Exception e) {
 			found = false;
 		}
 		return found;
 
 	}
-	
+
 	protected void click(By by, String elementName) {
+		getWebElement(by).isDisplayed();
 		getWebElement(by).click();
+		ExtentLogger.pass(elementName + "  clicked successfully");
+
+	}
+
+	protected void jsClick(By by, String elementName) {
+		((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView();",
+				getWebElement(by));
 		ExtentLogger.pass(elementName + "  clicked successfully");
 
 	}

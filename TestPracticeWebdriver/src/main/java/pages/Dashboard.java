@@ -23,17 +23,17 @@ public class Dashboard extends SelemiumAction {
 	private By optioninSelfDeclareModal = By.xpath(
 			"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
 
-	
 	public boolean dashboardloaded() {
 		String expected = "https://iengage.coforgetech.com/ess2/HomePage/Welcome";
 		return getURL().equalsIgnoreCase(expected);
 	}
+
 	public boolean verifingAttendanceLinkInDashboard(String actionName) {
 		if (elementIsPresent(vaccinationMessage)) {
 			By saveButton = By.xpath("//*[@id=\"btnSave\"]");
-			click(saveButton, "save button in vaccine screen");
-			By popupCloseButton = By.xpath("//*[@id=\"popupalert1\"]/button");
-			click(popupCloseButton, "close button in popuscreen");
+			jsClick(saveButton, "save button in vaccine screen clicked successfully");
+			By popupCloseButton = By.xpath("//div[@class='modal-content']//*[@id=\"popupalert1\"]/button");
+			click(popupCloseButton, "close button in popuscreen clicked successfully");
 		}
 
 		if (elementIsPresent(self)) {
@@ -56,11 +56,15 @@ public class Dashboard extends SelemiumAction {
 					By popupAfterclickingAttendanceLink = By
 							.xpath("//*[@id=\"myModal\"]/div/div//button[@class='btn btn-primary' and text()='Close']");
 					click(popupAfterclickingAttendanceLink, "button after successful attendance");
+					// ACTIONWINDOW NOT PRESENT
 					break;
 				}
 			}
 		}
-		click(actionWindowCloseButton, "close button in Action Modal");
+		if (elementIsPresent(actionWindowCloseButton)) {
+			click(actionWindowCloseButton, "close button in Action Modal");
+		}
+
 		highLightWebElement(attendanceLink);
 		return getWebElement(attendanceLink).isDisplayed();
 	}

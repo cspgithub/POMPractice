@@ -40,6 +40,7 @@ public class LoginPage extends SelemiumAction {
 		if( !new Dashboard().dashboardloaded()){
 			ExtentLogger.info("login unscussfull");
 		}
+		ExtentLogger.pass("logged in successfully");
 		return new Dashboard();
 		
 		
