@@ -2,35 +2,35 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-06-16T17:58:06 IST" name="Suite" finished-at="2021-06-16T17:58:52 IST" duration-ms="46859">
+  <suite started-at="2021-06-24T09:36:14 IST" name="Suite" finished-at="2021-06-24T09:38:33 IST" duration-ms="139224">
     <groups>
     </groups>
-    <test started-at="2021-06-16T17:58:06 IST" name="Test" finished-at="2021-06-16T17:58:52 IST" duration-ms="46859">
+    <test started-at="2021-06-24T09:36:14 IST" name="Test" finished-at="2021-06-24T09:38:33 IST" duration-ms="139224">
       <class name="testcases.LogInTest">
-        <test-method is-config="true" signature="start()[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-16T17:58:06 IST" name="start" finished-at="2021-06-16T17:58:06 IST" duration-ms="19" status="PASS">
+        <test-method is-config="true" signature="start()[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-24T09:36:14 IST" name="start" finished-at="2021-06-24T09:36:14 IST" duration-ms="21" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- start -->
-        <test-method is-config="true" signature="startDriver()[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-16T17:58:06 IST" name="startDriver" finished-at="2021-06-16T17:58:14 IST" duration-ms="7271" status="PASS">
+        <test-method is-config="true" signature="startDriver()[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-24T09:36:14 IST" name="startDriver" finished-at="2021-06-24T09:36:22 IST" duration-ms="7249" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startDriver -->
-        <test-method signature="veriWithValidCredentials(java.util.Map)[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-16T17:58:14 IST" name="veriWithValidCredentials" data-provider="getUserThruExcel" finished-at="2021-06-16T17:58:51 IST" duration-ms="37724" status="PASS">
+        <test-method signature="verifyAttendanceForCurrentDateValidUser(java.util.Map)[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-24T09:36:22 IST" name="verifyAttendanceForCurrentDateValidUser" data-provider="userData" finished-at="2021-06-24T09:38:32 IST" duration-ms="130122" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{password=Cfg@2021$, username=77378}]]>
+                <![CDATA[{password=config:approverpassword, username=77378}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- veriWithValidCredentials -->
-        <test-method is-config="true" signature="Close()[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-16T17:58:52 IST" name="Close" finished-at="2021-06-16T17:58:52 IST" duration-ms="773" status="PASS">
+        </test-method> <!-- verifyAttendanceForCurrentDateValidUser -->
+        <test-method is-config="true" signature="Close()[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-24T09:38:32 IST" name="Close" finished-at="2021-06-24T09:38:33 IST" duration-ms="869" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method is-config="true" signature="CloseD()[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-16T17:58:53 IST" name="CloseD" finished-at="2021-06-16T17:58:53 IST" duration-ms="55" status="PASS">
+        <test-method is-config="true" signature="CloseD()[pri:0, instance:testcases.LogInTest@537f60bf]" started-at="2021-06-24T09:38:33 IST" name="CloseD" finished-at="2021-06-24T09:38:33 IST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseD -->

@@ -8,9 +8,9 @@
     <classes>
       <class name="testcases.LogInTest">
         <methods>
+          <include name="verifyAttendanceForCurrentDateValidUser" invocation-numbers="0"/>
           <include name="start"/>
           <include name="Close"/>
-          <include name="veriWithInValidCredentials"/>
           <include name="CloseD"/>
           <include name="startDriver"/>
         </methods>
