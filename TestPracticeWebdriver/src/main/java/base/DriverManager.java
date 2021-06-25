@@ -8,7 +8,7 @@ public final class DriverManager {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected static final ThreadLocal<WebDriver> threadLocal = new ThreadLocal<>();
+	protected final static ThreadLocal<WebDriver> threadLocal = new ThreadLocal<>();
 
 	public static WebDriver getDriver() {
 		return threadLocal.get();

@@ -26,7 +26,8 @@ public class BaseTest implements Pageinitialize {
 	@Override @BeforeMethod
 	public void startDriver() {
 		System.out.println("calling interface function");
-		Driver.initateDriver();
+		Driver driverObj = new Driver();
+		driverObj.initateDriver();
 	}
 	@AfterMethod
 	protected void Close() {
