@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeSuite;
 
 import base.Driver;
 import base.Pageinitialize;
+import utility.Log;
 
 public class BaseTest implements Pageinitialize {
 
@@ -25,7 +26,7 @@ public class BaseTest implements Pageinitialize {
 
 	@Override @BeforeMethod
 	public void startDriver() {
-		System.out.println("calling interface function");
+		Log.info("interface called");
 		Driver driverObj = new Driver();
 		driverObj.initateDriver();
 	}

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 
 import dataProvider.AllUsersData;
 import reports.ExtentLogger;
+import utility.Log;
 import utility.Utilities;
 
 public class LoginPage extends SelemiumAction {
@@ -38,7 +39,9 @@ public class LoginPage extends SelemiumAction {
 		type(loginPassword, Utilities.getDecodedString(password), "password");
 		click(signButton, "signin button");
 		ExtentLogger.pass("logged in successfully");
+		Log.info("login successfull");
 		return new Dashboard();
+	
 
 	}
 

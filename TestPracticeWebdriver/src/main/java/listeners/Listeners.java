@@ -10,6 +10,7 @@ import org.testng.ITestResult;
 
 import reports.ExtentLogger;
 import reports.ExtentReport;
+import utility.Log;
 
 //  
 //  Listener class which is implementing ITestListener and hence we can use this
@@ -21,7 +22,7 @@ public class Listeners implements ITestListener, ISuiteListener {
 	public void onStart(ISuite suite) {
 		try {
 			ExtentReport.initReports();
-			//Log.info(suite.getName() +"started");
+			// Log.info(suite.getName() +"started");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,12 +32,13 @@ public class Listeners implements ITestListener, ISuiteListener {
 	@Override
 	public void onFinish(ISuite suite) {
 		ExtentReport.flushReports();
+		Log.info("TC Finished");
 	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
 		ExtentReport.createTest(result.getMethod().getMethodName());
-
+		Log.info("Test Case : " + result.getMethod().getMethodName() + " execution Started");
 	}
 
 	@Override

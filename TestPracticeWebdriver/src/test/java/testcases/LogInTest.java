@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import dataProvider.DataProviderClass;
 import reports.ExtentLogger;
+import utility.Log;
 
 public class LogInTest extends BaseTest {
 
@@ -34,7 +35,8 @@ public class LogInTest extends BaseTest {
 	
 	@Test(dataProvider = "userData", dataProviderClass = DataProviderClass.class)
 	public void verifyAttendanceForCurrentDateValidUser(Map<String, String> map) throws IOException {
-		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
+		//System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
+		Log.info("The thread ID for Chrome is " + Thread.currentThread().getId());
 		ExtentLogger.info("TC started");
 		loginIntoIengagePortal.usingCredentials(map.get("username"), map.get("password"))
 				.verifingAttendanceLinkInDashboard("Attendance");
