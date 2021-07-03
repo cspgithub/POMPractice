@@ -1,4 +1,11 @@
 --- 
-admin: 77378
-adminpassword: Q2ZnQDIwMjEk
- 
+allTestCaseDataMap: 
+  admin: 
+    - 
+      name: '77378'
+      password: Cfg@2021$
+    
+  leader: 
+    - 
+      name: 10
+      password: smoke

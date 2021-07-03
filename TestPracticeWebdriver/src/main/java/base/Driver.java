@@ -3,6 +3,7 @@ package base;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import enums.EnumType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utility.ConfigFileReader;
+import utility.Log;
 
 public class Driver {
 
@@ -73,7 +75,8 @@ public class Driver {
 	}
 
 	private void createLocalDriver(String browser) throws IOException {
-		System.out.println("Browser Selected :" + browser);
+		//System.out.println("Browser Selected :" + browser);
+		Log.info("Browser Selected :" + browser);
 
 		switch (browser) {
 		case "chrome":
@@ -97,6 +100,7 @@ public class Driver {
 		DriverManager.getDriver().manage().deleteAllCookies();
 		DriverManager.getDriver().manage().window().maximize();
 		DriverManager.getDriver().get(ConfigFileReader.getValue("url"));
+		//DriverManager.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 	}
 

@@ -39,7 +39,7 @@ public class Dashboard extends SelemiumAction {
 		if (elementIsPresent(self)) {
 			click(optioninSelfDeclareModal, "WFH radio button");
 			click(submitButton, "submit button of selfdeclare modal");
-			sleep(100);
+			sleep(1000);
 			acceptAlert("Accept");// to test it again
 		}
 
@@ -57,7 +57,6 @@ public class Dashboard extends SelemiumAction {
 							.xpath("//*[@id=\"myModal\"]/div/div//button[@class='btn btn-primary' and text()='Close']");
 					click(popupAfterclickingAttendanceLink, "button after successful attendance");
 					// ACTIONWINDOW NOT PRESENT
-					break;
 				}
 			}
 		}

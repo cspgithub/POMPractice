@@ -21,6 +21,7 @@ public class Listeners implements ITestListener, ISuiteListener {
 	public void onStart(ISuite suite) {
 		try {
 			ExtentReport.initReports();
+			//Log.info(suite.getName() +"started");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
