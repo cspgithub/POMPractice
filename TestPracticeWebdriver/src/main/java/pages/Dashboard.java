@@ -29,6 +29,7 @@ public class Dashboard extends SelemiumAction {
 	}
 
 	public boolean verifingAttendanceLinkInDashboard(String actionName) {
+		dashboardloaded();
 		if (elementIsPresent(vaccinationMessage)) {
 			By saveButton = By.xpath("//*[@id=\"btnSave\"]");
 			jsClick(saveButton, "save button in vaccine screen clicked successfully");
@@ -41,6 +42,7 @@ public class Dashboard extends SelemiumAction {
 			click(submitButton, "submit button of selfdeclare modal");
 			sleep(1000);
 			acceptAlert("Accept");// to test it again
+			sleep(2000);
 		}
 
 		if (elementIsPresent(actionWindow)) {

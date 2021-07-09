@@ -1,11 +1,13 @@
---- 
-allTestCaseDataMap: 
-  admin: 
-    - 
-      name: '77378'
-      password: Cfg@2021$
-    
-  leader: 
-    - 
-      name: 10
-      password: smoke
+---
+users:
+- username: admin
+  password: admin@10@
+  roles:
+  - READ
+  - WRITE
+  - VIEW
+  - DELETE
+- username: guest
+  password: guest@01
+  roles:
+  - VIEW

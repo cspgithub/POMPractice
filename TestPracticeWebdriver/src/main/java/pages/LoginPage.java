@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 
-import dataProvider.AllUsersData;
 import reports.ExtentLogger;
 import utility.Log;
 import utility.Utilities;
@@ -45,10 +44,11 @@ public class LoginPage extends SelemiumAction {
 
 	}
 
-	public Dashboard usingCorrectCredentialsYaml(String username, String password) {
+	public Dashboard usingCorrectCredentialsYaml() {
+		
 		click(loginButton, "login button");
-		type(loginId, username, "username");
-		type(loginPassword, password, "password");
+//		type(loginId, admin.getName(), "username");
+//		type(loginPassword, admin.getPassword(), "password");
 		click(signButton, "signin button");
 		ExtentLogger.pass("logged in successfully");
 		return new Dashboard();

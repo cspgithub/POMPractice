@@ -64,7 +64,7 @@ public class SelemiumAction {
 	}
 
 	protected void click(By by, String elementName) {
-		getWebElement(by).isDisplayed();
+		//getWebElement(by).isDisplayed();
 		getWebElement(by).click();
 		ExtentLogger.pass(elementName + "  clicked successfully");
 
