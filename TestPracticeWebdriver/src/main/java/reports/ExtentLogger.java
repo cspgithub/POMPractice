@@ -45,7 +45,7 @@ public class ExtentLogger {
 					MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Image()).build());
 
 		} else {
-			skip(message);
+			pass(message);
 		}
 
 	}

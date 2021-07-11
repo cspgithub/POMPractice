@@ -12,6 +12,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 
 import base.DriverManager;
@@ -49,6 +50,12 @@ public class SelemiumAction {
 		return webElement;
 	}
 
+	protected void type(WebElement elem, String value, String elementName) {
+		elem.clear();
+		elem.sendKeys(value);
+		ExtentLogger.pass(elementName + "  typed/entered  successfully");
+
+	}
 	protected boolean elementIsPresent(By by) {
 		boolean found = false;
 		try {
@@ -91,7 +98,7 @@ public class SelemiumAction {
 		}
 	}
 
-	public void acceptAlert(String action) {
+	protected void acceptAlert(String action) {
 		sleep(100);
 		Alert alert = (DriverManager.getDriver().switchTo().alert());
 		switch (action) {
@@ -106,6 +113,11 @@ public class SelemiumAction {
 			break;
 		}
 
+	}
+	
+	protected void selectFromDropdown(By by ,int index) {
+		Select objSelect = new Select(getWebElement(by));
+		objSelect.selectByIndex(index);
 	}
 
 	public List<WebElement> getListOfWebElementByString(String str) {

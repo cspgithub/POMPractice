@@ -1,6 +1,5 @@
 package utility;
 
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
@@ -10,9 +9,17 @@ import java.util.Map;
 import exception.PropertyNotFoundException;
 
 public class Utilities {
-
+	/* July 09 */
 	public static String formatCurrentLocalDate() {
 		String date = LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM dd"));
+		return date;
+
+	}
+	
+	
+	/* 00-Jul-2021 */
+	public static String formatCurrentLocalDateForTimesheet() {
+		String date = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MMM-YYYY"));
 		return date;
 
 	}

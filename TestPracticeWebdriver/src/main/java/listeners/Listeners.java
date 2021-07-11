@@ -22,9 +22,7 @@ public class Listeners implements ITestListener, ISuiteListener {
 	public void onStart(ISuite suite) {
 		try {
 			ExtentReport.initReports();
-			// Log.info(suite.getName() +"started");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -32,12 +30,12 @@ public class Listeners implements ITestListener, ISuiteListener {
 	@Override
 	public void onFinish(ISuite suite) {
 		ExtentReport.flushReports();
-		Log.info("TC Finished");
 	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
 		ExtentReport.createTest(result.getMethod().getMethodName());
+		ExtentLogger.info("Test Case : " + result.getMethod().getMethodName() + " execution Started");
 		Log.info("Test Case : " + result.getMethod().getMethodName() + " execution Started");
 	}
 
@@ -53,10 +51,11 @@ public class Listeners implements ITestListener, ISuiteListener {
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		ExtentLogger.fail(result.getThrowable().getMessage());
+		//ExtentLogger.fail(result.getThrowable().getMessage());
 		ExtentLogger.fail(result.getMethod().getMethodName(), "yes");
-
-		// attach screenshot
+		ExtentLogger.info("Test Case : " + result.getMethod().getMethodName() + " execution Finished");
+		Log.info("Test Case : " + result.getMethod().getMethodName() + " execution Finished");
+	
 	}
 
 }
