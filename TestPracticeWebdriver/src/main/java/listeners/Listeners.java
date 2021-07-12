@@ -43,6 +43,8 @@ public class Listeners implements ITestListener, ISuiteListener {
 	public void onTestSuccess(ITestResult result) {
 		try {
 			ExtentLogger.pass(result.getMethod().getMethodName(), "yes");
+			ExtentLogger.info("Test Case : " + result.getMethod().getMethodName() + " execution Finished");
+			Log.info("Test Case : " + result.getMethod().getMethodName() + " execution Finished");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
