@@ -33,7 +33,11 @@ public class Dashboard extends SelemiumAction {
 			"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
 	private By dropdownParentActivity = By
 			.xpath("//select[@class='selectActivity  select2 narrow wrap select2-hidden-accessible']");
-
+	final String date = Utilities.formatCurrentLocalDateForTimesheet();
+	String b = String.format(
+			"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
+			date);
+	private By blankCells = By.xpath(b);
 	private static String status;
 
 	private static final Map<String, String> map = new HashMap<>();
@@ -153,7 +157,7 @@ public class Dashboard extends SelemiumAction {
 		newTab1.remove(oldTab);
 		// change focus to new tab
 		DriverManager.getDriver().switchTo().window(newTab1.get(0));
-		String date = Utilities.formatCurrentLocalDateForTimesheet();
+
 		// String date = "12-Jul-2021";
 
 		By textBox = By.xpath(
@@ -169,12 +173,13 @@ public class Dashboard extends SelemiumAction {
 
 		String datetoMarked = map.get(date.toString());
 		if (datetoMarked.isBlank()) {
-			String b = String.format(
-					"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
-					date);
-			By blankCells = By.xpath(b);
+			/*
+			 * String b = String.format(
+			 * "//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
+			 * date); By blankCells = By.xpath(b);
+			 */
 			try {
-				selectFromDropdown(dropdownParentActivity, 1);
+				selectFromDropdown(dropdownParentActivity, 2);
 				type(blankCells, "8", "hrs in textbox");
 				click(coforgeTimecardSaveButton, "button Save in timecard footer");
 				Log.info("timesheet updated for the" + date);
@@ -183,21 +188,21 @@ public class Dashboard extends SelemiumAction {
 				throw new PropertyNotFoundException("timesheet not updated for the :" + date);
 			}
 		}
-		// check map values if all key value pair are not empty click submit
-		/*
-		 * for (String value : map.values()) { if (value.isEmpty()) {
-		 * Log.info("still hrs needs to be updated"); break; } else {
-		 * System.out.println("we can submit timesheet to approver"); break; } }
-		 */
 
-		for (String name : map.keySet()) {
+		for (String dateOf : map.keySet()) {
 			// search for value
-			String value = map.get(name);
+			String value = map.get(dateOf);
 			if (value.isEmpty()) {
-				System.out.println("Key = " + name + ", Value = " + value);
-				Log.info("still hrs needs to be updated for : "+ name);
+				// System.out.println("Key = " + dateOf + ", Value = " + value);
+				Log.info("still hrs needs to be updated for : " + dateOf);
+				ExtentLogger.info("still hrs needs to be updated for : " + dateOf);
+				String b1 = String.format(
+						"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
+						dateOf);
+				By blankCells1 = By.xpath(b1);
+				highLightWebElement(blankCells1);
 				break;
-			}else {
+			} else {
 				System.out.println("we can submit timesheet to approver");
 				break;
 			}
