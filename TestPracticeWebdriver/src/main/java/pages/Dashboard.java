@@ -2,7 +2,9 @@
 package pages;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -29,9 +31,12 @@ public class Dashboard extends SelemiumAction {
 			.xpath("//div[@id='SmQuestion']//h4[@class='modal-title']/b[contains(text(),' Self-declaration ')]");
 	private By optioninSelfDeclareModal = By.xpath(
 			"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
-	private By dropdownParentActivity = By.xpath("//select[@class='selectActivity  select2 narrow wrap select2-hidden-accessible']");
-	
+	private By dropdownParentActivity = By
+			.xpath("//select[@class='selectActivity  select2 narrow wrap select2-hidden-accessible']");
+
 	private static String status;
+
+	private static final Map<String, String> map = new HashMap<>();
 
 	public boolean dashboardloaded() {
 		String expected = "https://iengage.coforgetech.com/ess2/HomePage/Welcome";
@@ -108,17 +113,19 @@ public class Dashboard extends SelemiumAction {
 		By attendanceTable = By.xpath("//*[@id=\"ctl00_ContentPlaceHolder1_calAttendance\"]/tbody");
 		getWebElement(attendanceTable).isDisplayed();
 		String currentDate = Utilities.formatCurrentLocalDate();
-		//String currentDate = "July 09";
+		// String currentDate = "July 09";
 		String a = String.format(
 				"//*[@id='ctl00_ContentPlaceHolder1_calAttendance']/tbody//tr/td[@class='aas_Present']//a[@title='%s']/following::td[text()='Present']",
 				currentDate);
 		By markedDate = By.xpath(a);
 		try {
 			status = getWebElement(markedDate).getText();
-			ExtentLogger.pass("attendamce marked successfully for " + currentDate, "yes");
+			ExtentLogger.pass("attendance marked successfully for " + currentDate, "yes");
 		} catch (Exception e) {
-			//ExtentLogger.fail("attendance not marked for : " + currentDate +" as its being Sunday/Saturday or Public Holiday,", "yes");
-			throw new PropertyNotFoundException("Please mark attendance for valid day/date as " + currentDate +" is either Sunday/Saturday or Holiday");
+			// ExtentLogger.fail("attendance not marked for : " + currentDate +" as its
+			// being Sunday/Saturday or Public Holiday,", "yes");
+			throw new PropertyNotFoundException("Please mark attendance for valid day/date as " + currentDate
+					+ " is either Sunday/Saturday or Holiday");
 		}
 		DriverManager.getDriver().close();
 		// back to dashboard
@@ -147,18 +154,54 @@ public class Dashboard extends SelemiumAction {
 		// change focus to new tab
 		DriverManager.getDriver().switchTo().window(newTab1.get(0));
 		String date = Utilities.formatCurrentLocalDateForTimesheet();
-		//String date = "12-Jul-2021";
-		String b = String.format(
-				"//*[@id=\"theadTimesheetModal\"]/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
-				date);
-		By blankCells = By.xpath(b);
-		try {
-			selectFromDropdown(dropdownParentActivity, 2);
-			type(blankCells, "8", "hrs in textbox");
-			click(coforgeTimecardSaveButton, "button Save in timecard footer");
-			Log.info("timesheet updated for the" + date);
-		} catch (Exception e) {
-			throw new PropertyNotFoundException("timesheet not updated for the :" + date);
+		// String date = "12-Jul-2021";
+
+		By textBox = By.xpath(
+				"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-daytype='1']");
+		getWebElement(textBox).isDisplayed();
+		List<WebElement> hrsTextBoxList = getListOfWebElementByElement(textBox);
+		for (WebElement dayTextBox : hrsTextBoxList) {
+			String key = dayTextBox.getAttribute("data-timesheetdate");
+			String value = dayTextBox.getAttribute("value");
+			map.put(key, value);
+			System.out.println(map);
+		}
+
+		String datetoMarked = map.get(date.toString());
+		if (datetoMarked.isBlank()) {
+			String b = String.format(
+					"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
+					date);
+			By blankCells = By.xpath(b);
+			try {
+				selectFromDropdown(dropdownParentActivity, 1);
+				type(blankCells, "8", "hrs in textbox");
+				click(coforgeTimecardSaveButton, "button Save in timecard footer");
+				Log.info("timesheet updated for the" + date);
+				ExtentLogger.pass("timecard successfully filled for " + date);
+			} catch (Exception e) {
+				throw new PropertyNotFoundException("timesheet not updated for the :" + date);
+			}
+		}
+		// check map values if all key value pair are not empty click submit
+		/*
+		 * for (String value : map.values()) { if (value.isEmpty()) {
+		 * Log.info("still hrs needs to be updated"); break; } else {
+		 * System.out.println("we can submit timesheet to approver"); break; } }
+		 */
+
+		for (String name : map.keySet()) {
+			// search for value
+			String value = map.get(name);
+			if (value.isEmpty()) {
+				System.out.println("Key = " + name + ", Value = " + value);
+				Log.info("still hrs needs to be updated for : "+ name);
+				break;
+			}else {
+				System.out.println("we can submit timesheet to approver");
+				break;
+			}
+
 		}
 
 	}
