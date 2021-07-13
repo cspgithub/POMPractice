@@ -21,6 +21,10 @@ public class Dashboard extends SelemiumAction {
 	private By timesheetLink = By.xpath("//a[contains(text(),'TimeSheet')and @class='thumb']");
 	private By coforgeTimecardLink = By.xpath("//*[@id=\"ctl00_hlnkTimeCard\"]");
 	private By coforgeTimecardSaveButton = By.xpath("//*[@id=\"btnSave\"]");
+	private By coforgeTimecardCloseButtonAfterSubmission = By
+			.xpath("//button[@class='btn btn-primary pull-right ActionClose']");
+	private By btnSucessTimeCard = By.id("btnSubmit");
+	private By btnAdminconfirmTimecard = By.id("btnAdminconfirm");
 
 	private By actionWindow = By.xpath("//*[@id=\"myModal\"]/div/div");
 	private By submitButton = By.xpath("//*[@id=\"btnsubmit\"]");
@@ -95,15 +99,19 @@ public class Dashboard extends SelemiumAction {
 	}
 
 	public void markHrsForCurrentDay() {
+		if (elementIsPresent(actionWindowCloseButton)) {
+			click(actionWindowCloseButton, "close button in Action Modal");
+		}
 		click(timesheetLink, "link timesheet in dashboard");
 		actionOnTimesheetTab();
 	}
 
-	public int actionOnItemInActionsModal(By by) {
-		getWebElement(by).click();
-		ArrayList<String> newTab = new ArrayList<String>(DriverManager.getDriver().getWindowHandles());
-		return newTab.size();
-	}
+	/*
+	 * public int actionOnItemInActionsModal(By by) { getWebElement(by).click();
+	 * ArrayList<String> newTab = new
+	 * ArrayList<String>(DriverManager.getDriver().getWindowHandles()); return
+	 * newTab.size(); }
+	 */
 
 	public void actionOnAttendanceTab() {
 		// considering that there is only one tab opened in that point.
@@ -168,20 +176,17 @@ public class Dashboard extends SelemiumAction {
 			String key = dayTextBox.getAttribute("data-timesheetdate");
 			String value = dayTextBox.getAttribute("value");
 			map.put(key, value);
-			System.out.println(map);
+			//System.out.println(map);
 		}
 
 		String datetoMarked = map.get(date.toString());
 		if (datetoMarked.isBlank()) {
-			/*
-			 * String b = String.format(
-			 * "//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
-			 * date); By blankCells = By.xpath(b);
-			 */
 			try {
 				selectFromDropdown(dropdownParentActivity, 2);
 				type(blankCells, "8", "hrs in textbox");
 				click(coforgeTimecardSaveButton, "button Save in timecard footer");
+				click(coforgeTimecardCloseButtonAfterSubmission,
+						"close button after entering hrs in textbox clicked successfully");
 				Log.info("timesheet updated for the" + date);
 				ExtentLogger.pass("timecard successfully filled for " + date);
 			} catch (Exception e) {
@@ -204,7 +209,17 @@ public class Dashboard extends SelemiumAction {
 				break;
 			} else {
 				System.out.println("we can submit timesheet to approver");
-				break;
+				if (elementIsPresent(btnSucessTimeCard)) {
+					click(btnSucessTimeCard, "timecard submitted successfully");
+					click(btnAdminconfirmTimecard, "Confirming timecard submission");
+					click(coforgeTimecardCloseButtonAfterSubmission, "close button after final confirmation");
+					break;
+				} else {
+					ExtentLogger.info("timecard for this week is already been submiited");
+					Log.info("timecard for this week is already been submiited");
+					break;
+				}
+
 			}
 
 		}
