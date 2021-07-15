@@ -37,7 +37,7 @@ public class LogInTest extends BaseTest {
 	public void verifyAttendanceForCurrentDateValidUser(Map<String, String> map) throws IOException {
 		//System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
 		Log.info("The thread ID for Chrome is " + Thread.currentThread().getId());
-		loginIntoIengagePortal.usingCredentials(map.get("username"), map.get("password")).verifingAttendanceLinkInDashboard("Attendance");
+		loginIntoIengagePortal.usingCredentials(map.get("username"), map.get("password")).markAttendance("Attendance");
 		dashboard.verifyAttendanceMarkedForDay();
 		assertTrue(dashboard.attendanceStatus().contains("Present"));
 		dashboard.markHrsForCurrentDay();

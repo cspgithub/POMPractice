@@ -1,10 +1,5 @@
 package testcases;
 
-import org.testng.annotations.Test;
-
-import dataProvider.DataProviderClass;
-import reports.ExtentLogger;
-
 public class LogInTest2 extends BaseTest {
 
 	/*
@@ -16,13 +11,13 @@ public class LogInTest2 extends BaseTest {
 	 * 
 	 * }
 	 */
-
-	@Test(dataProvider = "userDataYml", dataProviderClass = DataProviderClass.class)
-	public void testAdmin() {
-		System.out.println("The thread ID for Chrome is " + Thread.currentThread().getId());
-		ExtentLogger.info("TC started");
-		loginIntoIengagePortal.usingCorrectCredentialsYaml().dashboardloaded();
-		dashboard.verifingAttendanceLinkInDashboard("Attendance");
-		//assertTrue(dashboard.verifyAttendanceMarkedForDay());
-	}
+	/*
+	 * @Test(dataProvider = "userDataYml", dataProviderClass =
+	 * DataProviderClass.class) public void testAdmin() {
+	 * System.out.println("The thread ID for Chrome is " +
+	 * Thread.currentThread().getId()); ExtentLogger.info("TC started");
+	 * loginIntoIengagePortal.usingCorrectCredentialsYaml().dashboardloaded();
+	 * dashboard.verifingAttendanceLinkInDashboard("Attendance");
+	 * //assertTrue(dashboard.verifyAttendanceMarkedForDay()); }
+	 */
 }

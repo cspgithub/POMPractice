@@ -80,8 +80,8 @@ public class Driver {
 
 		switch (browser) {
 		case "chrome":
-			// WebDriverManager.chromedriver().setup();
-			System.setProperty("webdriver.chrome.driver", FrameworkConstants.getChromedriverpath());
+			WebDriverManager.chromedriver().setup();
+			//System.setProperty("webdriver.chrome.driver", FrameworkConstants.getChromedriverpath());
 			driver = new ChromeDriver();
 			break;
 
@@ -100,7 +100,7 @@ public class Driver {
 		DriverManager.getDriver().manage().deleteAllCookies();
 		DriverManager.getDriver().manage().window().maximize();
 		DriverManager.getDriver().get(ConfigFileReader.getValue("url"));
-		//DriverManager.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		DriverManager.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 	}
 

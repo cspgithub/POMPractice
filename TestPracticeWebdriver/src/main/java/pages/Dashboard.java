@@ -35,23 +35,27 @@ public class Dashboard extends SelemiumAction {
 			.xpath("//div[@id='SmQuestion']//h4[@class='modal-title']/b[contains(text(),' Self-declaration ')]");
 	private By optioninSelfDeclareModal = By.xpath(
 			"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
-	private By dropdownParentActivity = By
-			.xpath("//select[@class='selectActivity  select2 narrow wrap select2-hidden-accessible']");
-	final String date = Utilities.formatCurrentLocalDateForTimesheet();
+	private By dropdownParentActivity = By.xpath(
+			"//table[@id='datatableTimesheetModal']//tr[1]//td//select[@class='selectActivity select2 narrow wrap select2-hidden-accessible']");
+
+	private static String status;
+	String date = Utilities.formatCurrentLocalDateForTimesheet();
 	String b = String.format(
 			"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
 			date);
-	private By blankCells = By.xpath(b);
-	private static String status;
+	By blankCells = By.xpath(b);// current day textbox
 
-	private static final Map<String, String> map = new HashMap<>();
+	By textBoxAll = By.xpath(
+			"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-daytype='1']");
+
+	private static Map<String, String> map = new HashMap<>();
 
 	public boolean dashboardloaded() {
 		String expected = "https://iengage.coforgetech.com/ess2/HomePage/Welcome";
 		return getURL().equalsIgnoreCase(expected);
 	}
 
-	public boolean verifingAttendanceLinkInDashboard(String actionName) {
+	public boolean markAttendance(String actionName) {
 		dashboardloaded();
 		if (elementIsPresent(vaccinationMessage)) {
 			By saveButton = By.xpath("//*[@id=\"btnSave\"]");
@@ -98,14 +102,6 @@ public class Dashboard extends SelemiumAction {
 		actionOnAttendanceTab();
 	}
 
-	public void markHrsForCurrentDay() {
-		if (elementIsPresent(actionWindowCloseButton)) {
-			click(actionWindowCloseButton, "close button in Action Modal");
-		}
-		click(timesheetLink, "link timesheet in dashboard");
-		actionOnTimesheetTab();
-	}
-
 	/*
 	 * public int actionOnItemInActionsModal(By by) { getWebElement(by).click();
 	 * ArrayList<String> newTab = new
@@ -149,6 +145,14 @@ public class Dashboard extends SelemiumAction {
 		return status;
 	}
 
+	public void markHrsForCurrentDay() {
+		if (elementIsPresent(actionWindowCloseButton)) {
+			click(actionWindowCloseButton, "close button in Action Modal");
+		}
+		click(timesheetLink, "link timesheet in dashboard");
+		actionOnTimesheetTab();
+	}
+
 	public void actionOnTimesheetTab() {
 
 		// considering that there is only one tab opened in that point.
@@ -168,18 +172,15 @@ public class Dashboard extends SelemiumAction {
 
 		// String date = "12-Jul-2021";
 
-		By textBox = By.xpath(
-				"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-daytype='1']");
-		getWebElement(textBox).isDisplayed();
-		List<WebElement> hrsTextBoxList = getListOfWebElementByElement(textBox);
+		getWebElement(blankCells).isDisplayed();
+		List<WebElement> hrsTextBoxList = getListOfWebElementByElement(textBoxAll);
 		for (WebElement dayTextBox : hrsTextBoxList) {
 			String key = dayTextBox.getAttribute("data-timesheetdate");
 			String value = dayTextBox.getAttribute("value");
 			map.put(key, value);
-			//System.out.println(map);
 		}
 
-		String datetoMarked = map.get(date.toString());
+		String datetoMarked = map.get(date);
 		if (datetoMarked.isBlank()) {
 			try {
 				selectFromDropdown(dropdownParentActivity, 2);
@@ -200,7 +201,7 @@ public class Dashboard extends SelemiumAction {
 			if (value.isEmpty()) {
 				// System.out.println("Key = " + dateOf + ", Value = " + value);
 				Log.info("still hrs needs to be updated for : " + dateOf);
-				ExtentLogger.info("still hrs needs to be updated for : " + dateOf);
+				ExtentLogger.info("still hrs needs to be updated for : " + dateOf + "therfore timecard for this week can not be sumitted");
 				String b1 = String.format(
 						"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
 						dateOf);
@@ -215,8 +216,8 @@ public class Dashboard extends SelemiumAction {
 					click(coforgeTimecardCloseButtonAfterSubmission, "close button after final confirmation");
 					break;
 				} else {
-					ExtentLogger.info("timecard for this week is already been submiited");
-					Log.info("timecard for this week is already been submiited");
+					ExtentLogger.info("timecard for this week has been already been submiited");
+					Log.info("timecard for this week has been already been submiited");
 					break;
 				}
 
@@ -225,12 +226,5 @@ public class Dashboard extends SelemiumAction {
 		}
 
 	}
-
-// DriverManager.getDriver().close();
-// DriverManager.getDriver().switchTo().window(newTab1.get(0));
-// DriverManager.getDriver().close();
-// back to dashboard
-// DriverManager.getDriver().switchTo().window(oldTab);
-// return getWebElement(markedDate).isDisplayed();
 
 }
