@@ -36,16 +36,11 @@ public class Dashboard extends SelemiumAction {
 	private By optioninSelfDeclareModal = By.xpath(
 			"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
 	private By dropdownParentActivity = By.xpath(
-			"//table[@id='datatableTimesheetModal']//tr[1]//td//select[@class='selectActivity select2 narrow wrap select2-hidden-accessible']");
+			"//table[@id='datatableTimesheetModal']//tr[1]//td//select[@class='selectActivity  select2 narrow wrap select2-hidden-accessible']");
 
 	private static String status;
-	String date = Utilities.formatCurrentLocalDateForTimesheet();
-	String b = String.format(
-			"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
-			date);
-	By blankCells = By.xpath(b);// current day textbox
 
-	By textBoxAll = By.xpath(
+	private By textBoxAll = By.xpath(
 			"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-daytype='1']");
 
 	private static Map<String, String> map = new HashMap<>();
@@ -158,7 +153,8 @@ public class Dashboard extends SelemiumAction {
 		// considering that there is only one tab opened in that point.
 		String oldTab = DriverManager.getDriver().getWindowHandle();
 		// boolean foundElement = false;
-		ArrayList<String> newTab = new ArrayList<String>(DriverManager.getDriver().getWindowHandles());
+		ArrayList<String> newTab = new ArrayList<String>(DriverManager.getDriver().getWindowHandles());// return set of
+																										// strings
 		newTab.remove(oldTab);
 		// change focus to new tab
 		DriverManager.getDriver().switchTo().window(newTab.get(0));
@@ -171,7 +167,11 @@ public class Dashboard extends SelemiumAction {
 		DriverManager.getDriver().switchTo().window(newTab1.get(0));
 
 		// String date = "12-Jul-2021";
-
+		String date = Utilities.formatCurrentLocalDateForTimesheet();
+		String b = String.format(
+				"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
+				date);
+		By blankCells = By.xpath(b);// current day textbox
 		getWebElement(blankCells).isDisplayed();
 		List<WebElement> hrsTextBoxList = getListOfWebElementByElement(textBoxAll);
 		for (WebElement dayTextBox : hrsTextBoxList) {
@@ -180,10 +180,10 @@ public class Dashboard extends SelemiumAction {
 			map.put(key, value);
 		}
 
-		String datetoMarked = map.get(date);
-		if (datetoMarked.isBlank()) {
+		String hrsForCurrentDate = map.get(date);
+		if (hrsForCurrentDate.isBlank()) {
 			try {
-				selectFromDropdown(dropdownParentActivity, 2);
+				selectFromDropdown(dropdownParentActivity, "2");
 				type(blankCells, "8", "hrs in textbox");
 				click(coforgeTimecardSaveButton, "button Save in timecard footer");
 				click(coforgeTimecardCloseButtonAfterSubmission,
@@ -191,40 +191,42 @@ public class Dashboard extends SelemiumAction {
 				Log.info("timesheet updated for the" + date);
 				ExtentLogger.pass("timecard successfully filled for " + date);
 			} catch (Exception e) {
-				throw new PropertyNotFoundException("timesheet not updated for the :" + date);
+				e.getMessage();
 			}
-		}
 
-		for (String dateOf : map.keySet()) {
-			// search for value
-			String value = map.get(dateOf);
-			if (value.isEmpty()) {
-				// System.out.println("Key = " + dateOf + ", Value = " + value);
-				Log.info("still hrs needs to be updated for : " + dateOf);
-				ExtentLogger.info("still hrs needs to be updated for : " + dateOf + "therfore timecard for this week can not be sumitted");
-				String b1 = String.format(
-						"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-timesheetdate='%s']",
-						dateOf);
-				By blankCells1 = By.xpath(b1);
-				highLightWebElement(blankCells1);
-				break;
+		} else {
+			if (checkHrsEntryForRemainngDays()) {
+				Log.info("still hrs needs to be updated");
 			} else {
-				System.out.println("we can submit timesheet to approver");
-				if (elementIsPresent(btnSucessTimeCard)) {
-					click(btnSucessTimeCard, "timecard submitted successfully");
-					click(btnAdminconfirmTimecard, "Confirming timecard submission");
-					click(coforgeTimecardCloseButtonAfterSubmission, "close button after final confirmation");
-					break;
-				} else {
-					ExtentLogger.info("timecard for this week has been already been submiited");
-					Log.info("timecard for this week has been already been submiited");
-					break;
-				}
-
+				finalTimeCardSubmit();
 			}
-
 		}
 
 	}
 
+	public boolean checkHrsEntryForRemainngDays() {
+		boolean status1 = false;
+		for (String object : map.keySet()) {
+			if (map.get(object).isEmpty()) {
+				status1 = true;
+				ExtentLogger.info("still hrs needs to be updated for : " + object);
+				break;
+			}
+		}
+		return status1;
+
+	}
+
+	public void finalTimeCardSubmit() {
+		System.out.println("we can submit timesheet to approver");
+		if (elementIsPresent(btnSucessTimeCard)) {
+			click(btnSucessTimeCard, "timecard submitted successfully");
+			click(btnAdminconfirmTimecard, "Confirming timecard submission");
+			click(coforgeTimecardCloseButtonAfterSubmission, "close button after final confirmation");
+		} else {
+			ExtentLogger.info("timecard for this week has been already been submiited");
+			Log.info("timecard for this week has been already been submiited");
+		}
+
+	}
 }

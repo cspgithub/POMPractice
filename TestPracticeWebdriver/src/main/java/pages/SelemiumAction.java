@@ -56,6 +56,7 @@ public class SelemiumAction {
 		ExtentLogger.pass(elementName + "  typed/entered  successfully");
 
 	}
+
 	protected boolean elementIsPresent(By by) {
 		boolean found = false;
 		try {
@@ -71,7 +72,7 @@ public class SelemiumAction {
 	}
 
 	protected void click(By by, String elementName) {
-		//getWebElement(by).isDisplayed();
+		// getWebElement(by).isDisplayed();
 		getWebElement(by).click();
 		ExtentLogger.pass(elementName + "  clicked successfully");
 
@@ -114,10 +115,18 @@ public class SelemiumAction {
 		}
 
 	}
-	
-	protected void selectFromDropdown(By by ,int index) {
+
+	protected void selectFromDropdown(By by, String index) {
 		Select objSelect = new Select(getWebElement(by));
-		objSelect.selectByIndex(index);
+		List<WebElement> options = objSelect.getOptions();
+		for (WebElement value : options) {
+			if (value.getAttribute("value").equalsIgnoreCase(index)) {
+				value.click();
+				break;
+			}
+
+		}
+
 	}
 
 	public List<WebElement> getListOfWebElementByString(String str) {
