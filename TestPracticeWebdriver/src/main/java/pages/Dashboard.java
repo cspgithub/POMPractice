@@ -188,7 +188,7 @@ public class Dashboard extends SelemiumAction {
 				click(coforgeTimecardSaveButton, "button Save in timecard footer");
 				click(coforgeTimecardCloseButtonAfterSubmission,
 						"close button after entering hrs in textbox clicked successfully");
-				Log.info("timesheet updated for the" + date);
+				Log.info("timesheet updated for :" + date);
 				ExtentLogger.pass("timecard successfully filled for " + date);
 			} catch (Exception e) {
 				e.getMessage();
