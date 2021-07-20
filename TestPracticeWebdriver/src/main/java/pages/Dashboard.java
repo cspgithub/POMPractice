@@ -26,9 +26,9 @@ public class Dashboard extends SelemiumAction {
 	private By btnSucessTimeCard = By.id("btnSubmit");
 	private By btnAdminconfirmTimecard = By.id("btnAdminconfirm");
 
-	private By actionWindow = By.xpath("//*[@id=\"myModal\"]/div/div");
+	private By actionWindow = By.xpath("//*[@id='myModal']/div/div/div[1]/h4/b[contains(text(),'Actions')]");
 	private By submitButton = By.xpath("//*[@id=\"btnsubmit\"]");
-	private By actionWindowCloseButton = By.xpath("//*[@id=\"myModal\"]/div/div/div[3]/button");
+	private By actionWindowCloseButton = By.xpath("//*[@id='myModal']/div/div/div[3]/button");
 	private By vaccinationMessage = By.xpath(
 			"//div[@class='chat-panel panel panel-success']//b[text()='*It is mandatory to fill the vaccination form and update it as your status changes.']");
 	private By self = By
@@ -38,7 +38,7 @@ public class Dashboard extends SelemiumAction {
 	private By dropdownParentActivity = By.xpath(
 			"//table[@id='datatableTimesheetModal']//tr[1]//td//select[@class='selectActivity  select2 narrow wrap select2-hidden-accessible']");
 
-	private static String status;
+	private static String status = "";
 
 	private By textBoxAll = By.xpath(
 			"//*[@id='theadTimesheetModal']/tr[1]/th[2]/following::table[@id='datatableTimesheetModal']/tbody/tr[1]//td/input[@data-daytype='1']");
@@ -64,15 +64,12 @@ public class Dashboard extends SelemiumAction {
 			click(submitButton, "submit button of selfdeclare modal");
 			sleep(1000);
 			acceptAlert("Accept");// to test it again
-			sleep(2000);
+			sleep(2600);
 		}
 
 		if (elementIsPresent(actionWindow)) {
-			String actionAttendance = String.format(
-					"//div[@class='modal-body']/table/tbody//td[contains(text(),'%s')]/following::tr[1]//a",
-					actionName);
-			By attendanceLink = By.xpath(actionAttendance);
-			List<WebElement> listOfItems = getListOfWebElementByElement(attendanceLink);
+			By allItems = By.xpath("//*[@id='myModal']/div/div/div[1]/h4/b[contains(text(),'Actions')]/following::table/tbody//a");
+			List<WebElement> listOfItems = getListOfWebElementByElement(allItems);
 			for (WebElement webElement : listOfItems) {
 				String linkText = webElement.getText().toString().toLowerCase();
 				if (linkText.contains(actionName.toLowerCase())) {
@@ -80,7 +77,7 @@ public class Dashboard extends SelemiumAction {
 					By popupAfterclickingAttendanceLink = By
 							.xpath("//*[@id=\"myModal\"]/div/div//button[@class='btn btn-primary' and text()='Close']");
 					click(popupAfterclickingAttendanceLink, "button after successful attendance");
-					// ACTIONWINDOW NOT PRESENT
+					sleep(500);
 				}
 			}
 		}
@@ -96,13 +93,6 @@ public class Dashboard extends SelemiumAction {
 		click(attendanceLink, "link Attendance in dashboard");
 		actionOnAttendanceTab();
 	}
-
-	/*
-	 * public int actionOnItemInActionsModal(By by) { getWebElement(by).click();
-	 * ArrayList<String> newTab = new
-	 * ArrayList<String>(DriverManager.getDriver().getWindowHandles()); return
-	 * newTab.size(); }
-	 */
 
 	public void actionOnAttendanceTab() {
 		// considering that there is only one tab opened in that point.
@@ -125,8 +115,7 @@ public class Dashboard extends SelemiumAction {
 			status = getWebElement(markedDate).getText();
 			ExtentLogger.pass("attendance marked successfully for " + currentDate, "yes");
 		} catch (Exception e) {
-			// ExtentLogger.fail("attendance not marked for : " + currentDate +" as its
-			// being Sunday/Saturday or Public Holiday,", "yes");
+			ExtentLogger.fail("attendance not marked for : " + currentDate +" as its being Sunday/Saturday or Public Holiday");
 			throw new PropertyNotFoundException("Please mark attendance for valid day/date as " + currentDate
 					+ " is either Sunday/Saturday or Holiday");
 		}
