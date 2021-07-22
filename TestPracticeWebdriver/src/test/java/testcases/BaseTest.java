@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import base.Driver;
 import base.Pageinitialize;
@@ -23,12 +24,12 @@ public class BaseTest implements Pageinitialize {
 		Driver.setUpDocker();
 		
 	}
-
+	@Parameters("browser")
 	@Override @BeforeMethod
-	public void startDriver() {
+	public void startDriver(String browser) {
 		Log.info("interface called");
 		Driver driverObj = new Driver();
-		driverObj.initateDriver();
+		driverObj.initateDriver(browser);
 	}
 	@AfterMethod
 	protected void Close() {

@@ -44,11 +44,11 @@ public class Driver {
 		runtime.exec("taskkill /f /im cmd.exe");
 	}
 
-	public  void initateDriver() {
+	public  void initateDriver(String browser) {
 		if (Objects.isNull(DriverManager.getDriver())) {
 			try {
 				// setUpDocker();
-				createDriver();
+				createDriver(browser);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -56,15 +56,15 @@ public class Driver {
 
 	}
 
-	private void createDriver() throws IOException {
+	private void createDriver(String browser) throws IOException {
 		enumType = EnumType.valueOfLabel(ConfigFileReader.getValue("executionmode"));
 		switch (enumType) {
 		case LOCAL_ENV:
-			createLocalDriver(getBrowser());
+			createLocalDriver(browser);
 			break;
 		case REMOTE_ENV:
 
-			createRemoteDriver(getBrowser());
+			createRemoteDriver(browser);
 
 			break;
 		default:

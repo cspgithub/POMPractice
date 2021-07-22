@@ -7,7 +7,7 @@ public interface Pageinitialize {
 	
 	public LoginPage loginIntoIengagePortal = new LoginPage();
 	public Dashboard dashboard = new Dashboard();
-	void startDriver();
+	void startDriver(String browser);
 	
 
 }

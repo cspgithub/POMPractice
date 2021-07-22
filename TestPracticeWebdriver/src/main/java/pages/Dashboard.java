@@ -36,7 +36,7 @@ public class Dashboard extends SelemiumAction {
 	private By optioninSelfDeclareModal = By.xpath(
 			"//div[@id='SmQuestion']//following::div[@id='div_RequestType']/table/tbody//td//span[text()='Work from home']/preceding-sibling::input[@type='radio']");
 	private By dropdownParentActivity = By.xpath(
-			"//table[@id='datatableTimesheetModal']//tr[1]//td//select[@class='selectActivity  select2 narrow wrap select2-hidden-accessible']");
+			"//table[@id='datatableTimesheetModal']//tbody[@id='tbodyTimesheetModal']/tr[@class='odd'][1]//select[@class='selectActivity select2 narrow wrap select2-hidden-accessible']");
 
 	private static String status = "";
 
@@ -173,7 +173,7 @@ public class Dashboard extends SelemiumAction {
 		if (hrsForCurrentDate.isBlank()) {
 			try {
 				selectFromDropdown(dropdownParentActivity, "2");
-				type(blankCells, "8", "hrs in textbox");
+				type(blankCells, "8.00", "hrs in textbox");
 				click(coforgeTimecardSaveButton, "button Save in timecard footer");
 				click(coforgeTimecardCloseButtonAfterSubmission,
 						"close button after entering hrs in textbox clicked successfully");
@@ -184,16 +184,18 @@ public class Dashboard extends SelemiumAction {
 			}
 
 		} else {
-			if (checkHrsEntryForRemainngDays()) {
+			if (checkBlankEntryForRemainngDays()) {
 				Log.info("still hrs needs to be updated");
-			} else {
+			} 
+			else if (checkHoursEntryForRemainngDays()) {
+				Log.info("everything is updated");
 				finalTimeCardSubmit();
-			}
+			} 
 		}
 
 	}
 
-	public boolean checkHrsEntryForRemainngDays() {
+	public boolean checkBlankEntryForRemainngDays() {
 		boolean status1 = false;
 		for (String object : map.keySet()) {
 			if (map.get(object).isEmpty()) {
@@ -203,6 +205,17 @@ public class Dashboard extends SelemiumAction {
 			}
 		}
 		return status1;
+
+	}
+	public boolean checkHoursEntryForRemainngDays() {
+		boolean status2 = false;
+		for (String hrsInTextBox : map.keySet()) {
+			String a = map.get(hrsInTextBox).toString().trim();
+			if (a.equals("8.00")) {
+				status2 = true;
+			}
+		}
+		return status2;
 
 	}
 
