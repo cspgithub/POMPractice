@@ -173,7 +173,7 @@ public class Dashboard extends SelemiumAction {
 		if (hrsForCurrentDate.isBlank()) {
 			try {
 				selectFromDropdown(dropdownParentActivity, "2");
-				type(blankCells, "8.00", "hrs in textbox");
+				type(blankCells, "9.00", "hrs in textbox");
 				click(coforgeTimecardSaveButton, "button Save in timecard footer");
 				click(coforgeTimecardCloseButtonAfterSubmission,
 						"close button after entering hrs in textbox clicked successfully");
